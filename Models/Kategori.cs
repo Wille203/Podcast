@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Pod : Kategori
+    public abstract class Kategori
     {
-        public string PodNamn {  get; set; }
-        
-        public int AntalAvsnitt {  get; set; }
+        public int Id { get; set; }
 
-        public Pod()
+        public string KattNamn { get; set; }
+
+        public Kategori()
         {
 
         }
+}
+    
+
 }
