@@ -49,7 +49,7 @@ namespace Podd
         private void läggTillPoddToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            LaggTillPodd laggTillPodd = new LaggTillPodd();
+            LaggTillPodd2 laggTillPodd = new LaggTillPodd2();
             laggTillPodd.Show();
         }
 

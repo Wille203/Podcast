@@ -6,14 +6,24 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Pod : Kategori
+    [Serializable]
+    public class Pod
     {
-        public string PodNamn {  get; set; }
-        
-        public int AntalAvsnitt {  get; set; }
+        public string PodTitel {  get; set; }
+        //public string PodNamn { get; set; }
+        public string PodUrl { get; set; }
+        //public string PodKategori { get; set; }
+        public string Beskrivning { get; set; }
+        public List<Avsnitt>Avsnitt { get; set; }
 
         public Pod()
         {
 
         }
+        public Pod(string url, string podTitel)
+        {
+            PodUrl = url;
+            PodTitel = podTitel;
+        }
+    }
 }

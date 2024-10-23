@@ -5,17 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Models
+    
+
+
 {
+    [Serializable]
     public abstract class Kategori
     {
-        public int Id { get; set; }
 
         public string KattNamn { get; set; }
+        public List<Pod>Pod {  get; set; }  
 
-        public Kategori()
+        public Kategori(string kattNamn)
         {
+            KattNamn = kattNamn;
 
         }
+
+        public Kategori() { }
 }
     
 
