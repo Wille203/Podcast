@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
-    public class poddRepository
+    public class PoddRepository
     {
         private List <pod> enPod = new List<pod> ();
         
