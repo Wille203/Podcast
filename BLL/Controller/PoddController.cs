@@ -11,7 +11,11 @@ namespace BLL.Controller
 {
     public class PoddController
     {
-        public PoddController() { }
+        private poddRepository PoddRepository;
+        public PoddController()
+        {
+            PoddRepository = new poddRepository();
+        }
 
         public void HämtaPoddFrånRss(string rssLank)
         {
@@ -26,6 +30,7 @@ namespace BLL.Controller
                     Beskrivning = item.Summary.Text,
 
                 };
+                poddRepository.Add(enPodd);
             }
         }
     }
