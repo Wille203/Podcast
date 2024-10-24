@@ -6,15 +6,16 @@ using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using DAL.Repository;
 
 namespace BLL.Controller
 {
     public class PoddController
     {
-        private poddRepository PoddRepository;
+        private PoddRepository poddRepository;
         public PoddController()
         {
-            PoddRepository = new poddRepository();
+            poddRepository = new PoddRepository();
         }
 
         public void HämtaPoddFrånRss(string rssLank)
@@ -30,7 +31,7 @@ namespace BLL.Controller
                     Beskrivning = item.Summary.Text,
 
                 };
-                poddRepository.Add(enPodd);
+                PoddRepository.Add(enPodd);
             }
         }
     }
