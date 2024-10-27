@@ -8,11 +8,16 @@ using System.Xml.Serialization;
 
 namespace DAL
 {
-    internal class Serializer
+    internal class Serializer<T>
     {
         private string fileName;
 
         public string FileName { get; set; }
+
+        public Serializer()
+        {
+
+        }
     
 
         public Serializer(string fileName)
@@ -21,22 +26,22 @@ namespace DAL
     
         }
 
-        public void Serialize(List<T> list)
+        public void Serialize(List<T> list, string name)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
             using(FileStream xmlOut = 
-                new FileStream(fileName, FileMode.Create, FileAccess.Write))
+                new FileStream(name + ".xml", FileMode.Create, FileAccess.Write))
             {
                 xmlSerializer.Serialize(xmlOut, list);
             }
         }
 
-        public List<T> Deserialize()
+        public List<T> Deserialize(string name)
         {
             List<T> listan;
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
             using(FileStream xmlIn = 
-                new FileStream(fileName, FileMode.Open, FileAccess.Read))
+                new FileStream(name + ".xml", FileMode.Open, FileAccess.Read))
             {
                 listan = (List<T>)xmlSerializer.Deserialize(xmlIn);
             }

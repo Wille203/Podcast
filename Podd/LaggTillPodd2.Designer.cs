@@ -42,13 +42,14 @@
             minaPoddarToolStripMenuItem = new ToolStripMenuItem();
             läggTillPoddToolStripMenuItem = new ToolStripMenuItem();
             hanteraKategoriToolStripMenuItem = new ToolStripMenuItem();
+            btnHamtaPodd = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // lblPodd
             // 
             lblPodd.AutoSize = true;
-            lblPodd.Location = new Point(552, 101);
+            lblPodd.Location = new Point(551, 57);
             lblPodd.Name = "lblPodd";
             lblPodd.Size = new Size(74, 25);
             lblPodd.TabIndex = 28;
@@ -56,7 +57,7 @@
             // 
             // tbPoddNamn
             // 
-            tbPoddNamn.Location = new Point(551, 142);
+            tbPoddNamn.Location = new Point(551, 101);
             tbPoddNamn.Name = "tbPoddNamn";
             tbPoddNamn.Size = new Size(291, 31);
             tbPoddNamn.TabIndex = 27;
@@ -82,7 +83,7 @@
             // lblLank
             // 
             lblLank.AutoSize = true;
-            lblLank.Location = new Point(120, 101);
+            lblLank.Location = new Point(111, 67);
             lblLank.Name = "lblLank";
             lblLank.Size = new Size(48, 25);
             lblLank.TabIndex = 24;
@@ -115,7 +116,7 @@
             // 
             // tbLank
             // 
-            tbLank.Location = new Point(111, 142);
+            tbLank.Location = new Point(111, 101);
             tbLank.Name = "tbLank";
             tbLank.Size = new Size(251, 31);
             tbLank.TabIndex = 20;
@@ -155,11 +156,22 @@
             hanteraKategoriToolStripMenuItem.Size = new Size(160, 29);
             hanteraKategoriToolStripMenuItem.Text = "Hantera kategori";
             // 
+            // btnHamtaPodd
+            // 
+            btnHamtaPodd.Location = new Point(179, 138);
+            btnHamtaPodd.Name = "btnHamtaPodd";
+            btnHamtaPodd.Size = new Size(112, 34);
+            btnHamtaPodd.TabIndex = 29;
+            btnHamtaPodd.Text = "Hämta Podd";
+            btnHamtaPodd.UseVisualStyleBackColor = true;
+            btnHamtaPodd.Click += btnHamtaPodd_Click;
+            // 
             // LaggTillPodd2
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1030, 573);
+            Controls.Add(btnHamtaPodd);
             Controls.Add(lblPodd);
             Controls.Add(tbPoddNamn);
             Controls.Add(lblValKategori);
@@ -194,5 +206,6 @@
         private ToolStripMenuItem minaPoddarToolStripMenuItem;
         private ToolStripMenuItem läggTillPoddToolStripMenuItem;
         private ToolStripMenuItem hanteraKategoriToolStripMenuItem;
+        private Button btnHamtaPodd;
     }
 }

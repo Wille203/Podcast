@@ -9,10 +9,11 @@ namespace DAL.Repository
     public interface IRepository<T> where T : class
     {
         List<T> GetAll();
-        T GetByID(string id);
-        //void Insert(T theObject);
+        void Create (T entity);
         void Update(int index, T theObject);
         void Delete(int index);
+        int GetIndex(string name);
+        T GetByName(string name);
         void SaveChanges();
 
     }
