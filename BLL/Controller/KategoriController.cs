@@ -11,11 +11,11 @@ namespace BLL.Controller
     public class KategoriController
     {
         IRepository<Kategori> kategoriRepository;
-        Kategori nyKategori;
+        //Kategori nyKategori;
         public KategoriController()
         {
             kategoriRepository = new KategoriRepository();
-            nyKategori = new Kategori();
+            //nyKategori = new Kategori();
         }
 
         //public List<Kategori> LasAllaKategorier()
@@ -35,9 +35,31 @@ namespace BLL.Controller
             return kategoriLista;
         }
 
-        public void LaggTillKategori(string namn, List<Pod>)
+        public void UpdateraKategori(Kategori kategori)
         {
-            nyKategori.KattNamn = namn;
+            int index = kategoriRepository.GetIndex(kategori.KattNamn);
+            if(index >= 0)
+            {
+                kategoriRepository.Update(index, kategori);
+            }
+            else
+            {
+                kategoriRepository.Create(kategori);
+            }
+        }
+
+        public Kategori hamtaKategoriByName (string kategoriNamn)
+        {
+            return kategoriRepository.GetByName(kategoriNamn);
+        }
+
+        public void LaggTillKategori(string name, List<Pod> poddLista)
+        {
+            Kategori nyKategori = new Kategori(name)
+            {
+                Pod = poddLista
+            };
+
             kategoriRepository.Create(nyKategori);
         }
     }

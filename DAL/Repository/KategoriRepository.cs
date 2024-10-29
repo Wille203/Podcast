@@ -15,8 +15,8 @@ namespace DAL.Repository
 
         public KategoriRepository()
         {
-            kategoriLista = new List<Kategori>();
             kategoriSerializer = new Serializer<Kategori>();
+            kategoriLista = GetAll();
         }
         public void Create(Kategori entity)
         {
@@ -26,22 +26,29 @@ namespace DAL.Repository
 
         public void Delete(int index)
         {
-            kategoriLista.RemoveAt(index);
-            SaveChanges();
+            if(index >= 0 && index < kategoriLista.Count)
+            {
+                kategoriLista.RemoveAt(index);
+                SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
         }
 
         public List<Kategori> GetAll()
         {
-            List<Kategori>deserializedKategoriList = new List<Kategori>();
+            List<Kategori>deserialiseraadKategoriLista = new List<Kategori>();
             try
             {
-                deserializedKategoriList = kategoriSerializer.Deserialize(className);
+                deserialiseraadKategoriLista = kategoriSerializer.Deserialize(className);
             }
             catch (Exception) 
             {
 
             }
-            return deserializedKategoriList;
+            return deserialiseraadKategoriLista;
         }
 
         public Kategori GetByName(string name)
@@ -51,7 +58,13 @@ namespace DAL.Repository
 
         public int GetIndex(string name)
         {
-            return GetAll().FindIndex(e => e.KattNamn.Equals(name));
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Kategori kan inte vara tomt", nameof(name));
+            }
+
+            int index = GetAll().FindIndex(e => e.KattNamn.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return index;
         }
 
         public void SaveChanges()
@@ -61,11 +74,15 @@ namespace DAL.Repository
 
         public void Update(int index, Kategori theObject)
         {
-            if (index >= 0)
+            if (index < 0 && index >= kategoriLista.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+            else
             {
                 kategoriLista[index] = theObject;
+                SaveChanges();
             }
-            SaveChanges();
         }
 
         public static void kategoriPopulerare()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,47 +13,31 @@ namespace Podd
 {
     public partial class LaggTillPodd2 : Form
     {
-<<<<<<< Updated upstream
-=======
         PoddController poddController;
         KategoriController kategoriController;
->>>>>>> Stashed changes
         public LaggTillPodd2()
         {
             InitializeComponent();
-<<<<<<< Updated upstream
-=======
             tbPoddNamn.ReadOnly = true;
             kategoriController = new KategoriController();
             kategoriController.SkapaFardigKategori();
+            poddController = new PoddController();
             Fyllcb();
->>>>>>> Stashed changes
         }
 
         private void btnSparaPodd_Click(object sender, EventArgs e)
         {
-<<<<<<< Updated upstream
-            string urlText = tbLank.Text;
-            string namnText = tbNamn.Text;
-            string valKategori = cbValKategori.SelectedItem.ToString();
-=======
-            if (tbNamn.Text == null || tbNamn.Text == "")
-            {
-                poddController.SavePod(tbLank.Text, tbPoddNamn.Text);
-                int cbIndex = cbValKategori.SelectedIndex;
-            }
-            else
-            {
-                poddController.SavePod(tbLank.Text, tbNamn.Text);
-            }
-        }
+            string podName = string.IsNullOrEmpty(tbNamn.Text) ? tbPoddNamn.Text : tbNamn.Text;
+            string kategori = cbValKategori.SelectedItem?.ToString() ?? "";
 
-        private void btnHamtaPodd_Click(object sender, EventArgs e)
-        {
-            poddController.HamtaPoddFranRss(tbLank.Text);
-            tbPoddNamn.Text = poddController.GetPodName();
-            tbNamn.Text = poddController.GetPodName();
->>>>>>> Stashed changes
+            poddController.SavePod(tbLank.Text, podName, kategori);
+
+            tbLank.Text = string.Empty;
+            tbNamn.Text = string.Empty;
+            tbPoddNamn.Text = string.Empty;
+            cbValKategori.SelectedIndex = -1;
+
+            MessageBox.Show("Podd sparad!"); 
         }
 
         private void cbValKategori_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,6 +52,13 @@ namespace Podd
                 cbValKategori.Items.Add(s);
             }
 
+        }
+
+        private void btnHamtaPodd1_Click(object sender, EventArgs e)
+        {
+            poddController.HamtaPoddFranRss(tbLank.Text);
+            tbPoddNamn.Text = poddController.GetPodName();
+            tbNamn.Text = poddController.GetPodName();
         }
     }
 }
