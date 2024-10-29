@@ -70,8 +70,51 @@ namespace DAL.Repository
 
         public static void kategoriPopulerare()
         {
-            string[] lines = { "", "Komedi", "Historia", "Dokumentär", "Verkliga brott" };
+            string[] lines = { "Komedi", "Historia", "Dokumentär", "Verkliga brott" };
 
-            FileStream 
+            using (FileStream fileStream = new FileStream("Category.txt", FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                using (StreamWriter writer = new StreamWriter(fileStream))
+                {
+                    foreach (string line in lines)
+                        writer.WriteLine(line);
+                }
+            }
+        }
+        
+        public static void LaggTillKategori(string nyKategori)
+        {
+            using(FileStream filestream = new FileStream("Category.txt", FileMode.Append, FileAccess.Write))
+            {
+                using(StreamWriter writer = new StreamWriter(filestream))
+                {
+                    writer.WriteLine(nyKategori);
+                }
+            }
+        }
+
+        public static List<string> HamtaKategoriLista()
+        {
+            List<string> kategoriLista = new List<string>();
+
+            using(FileStream filestream = new FileStream("Category.txt", FileMode.Open, FileAccess.Read))
+            {
+                using (StreamReader reader = new StreamReader(filestream))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                       kategoriLista.Add(line);
+                    }
+                }
+            }
+            return kategoriLista;
+
+        }
+
+        public static List<String> HamtaAllaKategorier()
+        {
+            return HamtaKategoriLista();
+        }
     }
 }

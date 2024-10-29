@@ -11,17 +11,34 @@ namespace BLL.Controller
     public class KategoriController
     {
         IRepository<Kategori> kategoriRepository;
-
+        Kategori nyKategori;
         public KategoriController()
         {
             kategoriRepository = new KategoriRepository();
+            nyKategori = new Kategori();
         }
 
-        public List<Kategori> LasAllaKategorier()
+        //public List<Kategori> LasAllaKategorier()
+        //{
+        //    List<Kategori> kategoriLista = kategoriRepository.GetAll();
+        //    return kategoriLista;
+        //}
+
+        public void SkapaFardigKategori()
         {
-            List<Kategori> kategoriLista = kategoriRepository.GetAll();
+            KategoriRepository.kategoriPopulerare();
+        }
+
+        public List<String>  LasAllaKategorier()
+        {
+            List<String> kategoriLista = KategoriRepository.HamtaAllaKategorier();
             return kategoriLista;
         }
-            
+
+        public void LaggTillKategori(string namn, List<Pod>)
+        {
+            nyKategori.KattNamn = namn;
+            kategoriRepository.Create(nyKategori);
+        }
     }
 }

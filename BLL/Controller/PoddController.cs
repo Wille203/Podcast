@@ -20,7 +20,7 @@ namespace BLL.Controller
             newPod = new Pod();
         }
 
-        public void HämtaPoddFrånRss(string rssLank)
+        public void HamtaPoddFranRss(string rssLank)
         {
             XmlReader minXmlLasare = XmlReader.Create(rssLank);
             SyndicationFeed poddFlode = SyndicationFeed.Load(minXmlLasare);
