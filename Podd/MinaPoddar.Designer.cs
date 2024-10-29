@@ -29,11 +29,8 @@
         private void InitializeComponent()
         {
             lblMinaPoddar = new Label();
-            rtbMinaPoddar = new RichTextBox();
             lblSparadePoddar = new Label();
-            rtbAvsnitt = new RichTextBox();
             lblAvsnitt = new Label();
-            rtbBeskrivning = new RichTextBox();
             lblBeskrivning = new Label();
             cbValKategori = new ComboBox();
             lblValKategori = new Label();
@@ -48,6 +45,9 @@
             minaPoddarToolStripMenuItem = new ToolStripMenuItem();
             läggTillPoddToolStripMenuItem = new ToolStripMenuItem();
             hanteraKategoriToolStripMenuItem = new ToolStripMenuItem();
+            tbMinaPoddar = new TextBox();
+            rtbBeskrivning = new RichTextBox();
+            rtbAvsnitt = new RichTextBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,15 +61,6 @@
             lblMinaPoddar.TabIndex = 0;
             lblMinaPoddar.Text = "Mina Poddar";
             // 
-            // rtbMinaPoddar
-            // 
-            rtbMinaPoddar.Location = new Point(46, 78);
-            rtbMinaPoddar.Margin = new Padding(2);
-            rtbMinaPoddar.Name = "rtbMinaPoddar";
-            rtbMinaPoddar.Size = new Size(261, 113);
-            rtbMinaPoddar.TabIndex = 1;
-            rtbMinaPoddar.Text = "";
-            // 
             // lblSparadePoddar
             // 
             lblSparadePoddar.AutoSize = true;
@@ -80,15 +71,6 @@
             lblSparadePoddar.TabIndex = 2;
             lblSparadePoddar.Text = "Sparade poddar";
             // 
-            // rtbAvsnitt
-            // 
-            rtbAvsnitt.Location = new Point(388, 56);
-            rtbAvsnitt.Margin = new Padding(2);
-            rtbAvsnitt.Name = "rtbAvsnitt";
-            rtbAvsnitt.Size = new Size(137, 266);
-            rtbAvsnitt.TabIndex = 3;
-            rtbAvsnitt.Text = "";
-            // 
             // lblAvsnitt
             // 
             lblAvsnitt.AutoSize = true;
@@ -98,15 +80,6 @@
             lblAvsnitt.Size = new Size(44, 15);
             lblAvsnitt.TabIndex = 4;
             lblAvsnitt.Text = "Avsnitt";
-            // 
-            // rtbBeskrivning
-            // 
-            rtbBeskrivning.Location = new Point(528, 56);
-            rtbBeskrivning.Margin = new Padding(2);
-            rtbBeskrivning.Name = "rtbBeskrivning";
-            rtbBeskrivning.Size = new Size(177, 99);
-            rtbBeskrivning.TabIndex = 5;
-            rtbBeskrivning.Text = "";
             // 
             // lblBeskrivning
             // 
@@ -232,11 +205,40 @@
             hanteraKategoriToolStripMenuItem.Text = "Hantera kategori";
             hanteraKategoriToolStripMenuItem.Click += hanteraKategoriToolStripMenuItem_Click;
             // 
+            // tbMinaPoddar
+            // 
+            tbMinaPoddar.Location = new Point(71, 83);
+            tbMinaPoddar.Multiline = true;
+            tbMinaPoddar.Name = "tbMinaPoddar";
+            tbMinaPoddar.Size = new Size(213, 104);
+            tbMinaPoddar.TabIndex = 16;
+            tbMinaPoddar.MouseClick += tbMinaPoddar_MouseClick;
+            // 
+            // rtbBeskrivning
+            // 
+            rtbBeskrivning.Location = new Point(528, 58);
+            rtbBeskrivning.Name = "rtbBeskrivning";
+            rtbBeskrivning.Size = new Size(161, 129);
+            rtbBeskrivning.TabIndex = 18;
+            rtbBeskrivning.Text = "";
+            // 
+            // rtbAvsnitt
+            // 
+            rtbAvsnitt.Location = new Point(334, 58);
+            rtbAvsnitt.Name = "rtbAvsnitt";
+            rtbAvsnitt.Size = new Size(188, 316);
+            rtbAvsnitt.TabIndex = 19;
+            rtbAvsnitt.Text = "";
+            rtbAvsnitt.MouseClick += rtbAvsnitt_MouseClick;
+            // 
             // MinaPoddar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(701, 386);
+            Controls.Add(rtbAvsnitt);
+            Controls.Add(rtbBeskrivning);
+            Controls.Add(tbMinaPoddar);
             Controls.Add(menuStrip1);
             Controls.Add(btnTaBort);
             Controls.Add(cbTaBortPodd);
@@ -247,11 +249,8 @@
             Controls.Add(lblValKategori);
             Controls.Add(cbValKategori);
             Controls.Add(lblBeskrivning);
-            Controls.Add(rtbBeskrivning);
             Controls.Add(lblAvsnitt);
-            Controls.Add(rtbAvsnitt);
             Controls.Add(lblSparadePoddar);
-            Controls.Add(rtbMinaPoddar);
             Controls.Add(lblMinaPoddar);
             Margin = new Padding(2);
             Name = "MinaPoddar";
@@ -265,11 +264,8 @@
         #endregion
 
         private Label lblMinaPoddar;
-        private RichTextBox rtbMinaPoddar;
         private Label lblSparadePoddar;
-        private RichTextBox rtbAvsnitt;
         private Label lblAvsnitt;
-        private RichTextBox rtbBeskrivning;
         private Label lblBeskrivning;
         private ComboBox cbValKategori;
         private Label lblValKategori;
@@ -284,5 +280,8 @@
         private ToolStripMenuItem minaPoddarToolStripMenuItem;
         private ToolStripMenuItem läggTillPoddToolStripMenuItem;
         private ToolStripMenuItem hanteraKategoriToolStripMenuItem;
+        private TextBox tbMinaPoddar;
+        private RichTextBox rtbBeskrivning;
+        private RichTextBox rtbAvsnitt;
     }
 }

@@ -45,23 +45,22 @@ namespace BLL.Controller
                     PodUrl = rssLank
                 };
 
-                newPod = pod;
+                foreach (SyndicationItem item in poddFlode.Items)
+                {
+                    Avsnitt avsnitt = new Avsnitt
+                    {
+                        Titel = item.Title.Text,
+                        Beskrivning = item.Summary.Text,
+                    };
+                    pod.Avsnitt.Add(avsnitt);
+                }
+                podRepository.Create(pod);
+                newPod = pod; 
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Ett fel uppstod vid hämtning av rss-Flödet");
             }
-
-            //foreach (SyndicationItem item in poddFlode.Items)
-            //{
-            //    Pod enPodd = new Pod
-            //    {
-            //        PodTitel = item.Title.Text,
-            //        Beskrivning = item.Summary.Text,
-            //        PodUrl = rssLank
-            //    };
-            //    podRepository.Create(enPodd);
-            //}
         }
 
         public List<Pod> GetAllPods()

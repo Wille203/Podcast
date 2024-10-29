@@ -13,8 +13,8 @@ namespace Models
 
         public string Beskrivning {  get; set; }
 
-        public int AvsnittsDatum {  get; set; }
-        public string EpisodUrl { get; set; }  
+        //public int AvsnittsDatum {  get; set; }
+        //public string EpisodUrl { get; set; }  
 
         public Avsnitt() 
         {

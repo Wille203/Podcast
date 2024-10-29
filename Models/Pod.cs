@@ -17,7 +17,7 @@ namespace Models
 
         public Pod()
         {
-
+            Avsnitt = new List<Avsnitt>();
         }
         public Pod(string url, string podTitel)
         {
