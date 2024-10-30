@@ -61,11 +61,25 @@ namespace Podd
             tbNamn.Text = poddController.GetPodName();
         }
 
-        private void minaPoddarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void startsidanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StartSida startsida = new StartSida();
+            startsida.Show();
+        }
+
+        private void minaPoddarToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             this.Hide();
             MinaPoddar minaPoddar = new MinaPoddar();
             minaPoddar.Show();
+        }
+
+        private void hanteraKategoriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HanteraKategorier hanteraKategorier = new HanteraKategorier();
+            hanteraKategorier.Show();
         }
     }
 }
