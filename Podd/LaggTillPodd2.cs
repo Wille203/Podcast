@@ -68,5 +68,50 @@ namespace Podd
             }
 
         }
+<<<<<<< Updated upstream
+=======
+
+        private void btnHamtaPodd1_Click(object sender, EventArgs e)
+        {
+            poddController.HamtaPoddFranRss(tbLank.Text);
+            tbPoddNamn.Text = poddController.GetPodName();
+            tbNamn.Text = poddController.GetPodName();
+        }
+
+        private void minaPoddarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MinaPoddar minaPoddar = new MinaPoddar();
+            minaPoddar.Show();
+        }
+
+        private void startsidanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StartSida startSida = new StartSida();
+            startSida.Show();
+        }
+
+        private void minaPoddarToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            MinaPoddar minaPoddar = new MinaPoddar();
+            minaPoddar.Show();
+        }
+
+        private void läggTillPoddToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LaggTillPodd2 laggTillPodd = new LaggTillPodd2();
+            laggTillPodd.Show();
+        }
+
+        private void hanteraKategoriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            HanteraKategorier hanteraKategorier = new HanteraKategorier();
+            hanteraKategorier.Show();
+        }
+>>>>>>> Stashed changes
     }
 }
