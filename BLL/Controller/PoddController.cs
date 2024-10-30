@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using DAL.Repository;
+using System.Diagnostics;
 
 namespace BLL.Controller
 {
@@ -68,6 +69,7 @@ namespace BLL.Controller
             return podRepository.GetAll();
         }
 
+
         public void DeletePod(string name)
         {
             int index = podRepository.GetIndex(name);
@@ -102,5 +104,29 @@ namespace BLL.Controller
             kategori.Pod.Add(nyPod);
             kategoriController.UpdateraKategori(kategori);
         }
+        public Pod GetPodByTitle(string title)
+        {
+
+            List<Pod> allaPoddar = GetAllPods();
+
+            foreach (var podd in allaPoddar)
+            {
+                Debug.WriteLine($"Kontrollerar podd: '{podd.PodTitel}' (längd: {podd.PodTitel.Length})");
+
+              
+                if (podd.PodTitel.Trim().Equals(title.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    Debug.WriteLine("Match found: " + podd.PodTitel);
+                    return podd;
+                }
+            }
+
+            Debug.WriteLine("Ingen matchning hittades för titeln: '" + title + "'");
+            return null;
+        }
+
+
+
+
     }
 }
