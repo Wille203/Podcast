@@ -53,7 +53,7 @@ namespace DAL.Repository
 
         public Kategori GetByName(string name)
         {
-            return GetAll().FirstOrDefault(p => p.KattNamn.Equals(name));
+            return GetAll().FirstOrDefault(p => p.KattNamn.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public int GetIndex(string name)
@@ -63,8 +63,9 @@ namespace DAL.Repository
                 throw new ArgumentException("Kategori kan inte vara tomt", nameof(name));
             }
 
-            int index = GetAll().FindIndex(e => e.KattNamn.Equals(name, StringComparison.OrdinalIgnoreCase));
-            return index;
+            return kategoriLista.FindIndex(e => e.KattNamn.Equals(name, StringComparison.OrdinalIgnoreCase));
+            //int index = GetAll().FindIndex(e => e.KattNamn.Equals(name, StringComparison.OrdinalIgnoreCase));
+            //return index;
         }
 
         public void SaveChanges()
@@ -74,7 +75,7 @@ namespace DAL.Repository
 
         public void Update(int index, Kategori theObject)
         {
-            if (index < 0 && index >= kategoriLista.Count)
+            if (index < 0 || index >= kategoriLista.Count)
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }

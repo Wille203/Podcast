@@ -56,6 +56,7 @@ namespace Podd
 
         private void cbValKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             // Hämta den valda kategorins namn från combo-boxen
             string valdKategori = cbValKategori.SelectedItem?.ToString();
 
