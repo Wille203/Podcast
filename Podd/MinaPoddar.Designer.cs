@@ -156,6 +156,7 @@
             btnTaBort.TabIndex = 14;
             btnTaBort.Text = "Ta bort";
             btnTaBort.UseVisualStyleBackColor = true;
+            btnTaBort.Click += btnTaBort_Click;
             // 
             // menuStrip1
             // 
@@ -164,7 +165,7 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(9, 3, 0, 3);
-            menuStrip1.Size = new Size(1001, 35);
+            menuStrip1.Size = new Size(1143, 35);
             menuStrip1.TabIndex = 15;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -229,7 +230,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1001, 643);
+            ClientSize = new Size(1143, 697);
             Controls.Add(rtbAvsnitt);
             Controls.Add(rtbBeskrivning);
             Controls.Add(tbMinaPoddar);
