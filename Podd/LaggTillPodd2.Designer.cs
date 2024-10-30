@@ -138,12 +138,14 @@
             startsidanToolStripMenuItem.Name = "startsidanToolStripMenuItem";
             startsidanToolStripMenuItem.Size = new Size(106, 29);
             startsidanToolStripMenuItem.Text = "Startsidan";
+            startsidanToolStripMenuItem.Click += startsidanToolStripMenuItem_Click;
             // 
             // minaPoddarToolStripMenuItem
             // 
             minaPoddarToolStripMenuItem.Name = "minaPoddarToolStripMenuItem";
             minaPoddarToolStripMenuItem.Size = new Size(131, 29);
             minaPoddarToolStripMenuItem.Text = "Mina poddar";
+            minaPoddarToolStripMenuItem.Click += minaPoddarToolStripMenuItem_Click_1;
             // 
             // läggTillPoddToolStripMenuItem
             // 
@@ -156,6 +158,7 @@
             hanteraKategoriToolStripMenuItem.Name = "hanteraKategoriToolStripMenuItem";
             hanteraKategoriToolStripMenuItem.Size = new Size(160, 29);
             hanteraKategoriToolStripMenuItem.Text = "Hantera kategori";
+            hanteraKategoriToolStripMenuItem.Click += hanteraKategoriToolStripMenuItem_Click;
             // 
             // btnHamtaPodd1
             // 
