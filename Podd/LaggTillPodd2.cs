@@ -37,7 +37,7 @@ namespace Podd
             tbPoddNamn.Text = string.Empty;
             cbValKategori.SelectedIndex = -1;
 
-            MessageBox.Show("Podd sparad!"); 
+            MessageBox.Show("Podd sparad!");
         }
 
         private void cbValKategori_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,6 +59,13 @@ namespace Podd
             poddController.HamtaPoddFranRss(tbLank.Text);
             tbPoddNamn.Text = poddController.GetPodName();
             tbNamn.Text = poddController.GetPodName();
+        }
+
+        private void minaPoddarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MinaPoddar minaPoddar = new MinaPoddar();
+            minaPoddar.Show();
         }
     }
 }
