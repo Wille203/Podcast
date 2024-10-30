@@ -15,17 +15,21 @@ namespace Podd
     public partial class MinaPoddar : Form
     {
         private PoddController poddController;
+        KategoriController kategoriController;
         public MinaPoddar()
         {
             InitializeComponent();
             rtbAvsnitt.WordWrap = false;
             rtbAvsnitt.ScrollBars = RichTextBoxScrollBars.Both;
             rtbBeskrivning.ScrollBars = RichTextBoxScrollBars.Both;
-            rtbAvsnitt.ReadOnly = true; 
+            rtbAvsnitt.ReadOnly = true;
             rtbBeskrivning.ReadOnly = true;
             tbMinaPoddar.ReadOnly = true;
             poddController = new PoddController();
-            VisaPoddar();
+            kategoriController = new KategoriController();
+
+            Fyllcb(); // Fyller combo-boxen med kategorier
+            VisaPoddar(); // Visar alla poddar initialt
 
         }
 
@@ -39,6 +43,39 @@ namespace Podd
                 tbMinaPoddar.AppendText(podd.PodTitel + Environment.NewLine);
             }
         }
+
+        private void Fyllcb()
+        {
+            cbValKategori.Items.Clear(); // Rensar tidigare innehåll om något finns
+            List<string> kategoriLista = kategoriController.LasAllaKategorier();
+            foreach (string kategori in kategoriLista)
+            {
+                cbValKategori.Items.Add(kategori);
+            }
+        }
+
+        private void cbValKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Hämta den valda kategorins namn från combo-boxen
+            string valdKategori = cbValKategori.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(valdKategori))
+            {
+                // Hämta poddar för den valda kategorin via KategoriController
+                var poddarForKategori = kategoriController.HamtaPoddarForKategori(valdKategori);
+
+                // Rensa tidigare visade poddar i tbMinaPoddar
+                tbMinaPoddar.Clear();
+
+                // Lägg till varje podds titel i tbMinaPoddar
+                foreach (var podd in poddarForKategori)
+                {
+                    tbMinaPoddar.AppendText(podd.PodTitel + Environment.NewLine);
+                }
+            }
+        }
+
+
 
         private void startsidanToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -69,26 +106,20 @@ namespace Podd
         }
 
 
-        private void VisaAvsnittForPodd(string poddTitel)
+        private void VisaAvsnittForPodd(Pod poddTitel)
         {
-            var podd = poddController.GetAllPods().FirstOrDefault(p => p.PodTitel.Equals(poddTitel));
-            if (podd != null)
+            rtbAvsnitt.Clear();
+            Color[] colors = { Color.White, Color.LightGray };
+            int colorIndex = 0;
+
+            foreach (var avsnitt in poddTitel.Avsnitt)
             {
-                rtbAvsnitt.Clear();
-                Color[] colors = { Color.White, Color.LightGray };
-                int colorIndex = 0; 
-                foreach (var avsnitt in podd.Avsnitt)
-                {
-                    string avsnittsTitel = avsnitt.Titel.Trim();
-
-                    rtbAvsnitt.SelectionBackColor = colors[colorIndex];
-                    rtbAvsnitt.AppendText(avsnittsTitel + Environment.NewLine);
-
-                    colorIndex = (colorIndex + 1) % colors.Length;
-                }
-
-                rtbAvsnitt.SelectionBackColor = rtbAvsnitt.BackColor; 
+                rtbAvsnitt.SelectionBackColor = colors[colorIndex];
+                rtbAvsnitt.AppendText(avsnitt.Titel + Environment.NewLine);
+                colorIndex = (colorIndex + 1) % colors.Length;
             }
+
+            rtbAvsnitt.SelectionBackColor = rtbAvsnitt.BackColor;
         }
 
         private void VisaBeskrivningForAvsnitt(string avsnittTitel)
@@ -108,11 +139,21 @@ namespace Podd
 
         private void tbMinaPoddar_MouseClick(object sender, MouseEventArgs e)
         {
+
             int index = tbMinaPoddar.GetLineFromCharIndex(tbMinaPoddar.SelectionStart);
-            if (index >= 0)
+            if (index >= 0 && index < tbMinaPoddar.Lines.Length)
             {
-                string valdPodTitel = tbMinaPoddar.Lines[index];
-                VisaAvsnittForPodd(valdPodTitel);
+                string valdPodTitel = tbMinaPoddar.Lines[index].Trim();
+                Pod podd = poddController.GetPodByTitle(valdPodTitel);
+
+                if (podd != null)
+                {
+                    VisaAvsnittForPodd(podd);
+                }
+                else
+                {
+                    MessageBox.Show("Podd not found: " + valdPodTitel);
+                }
             }
         }
 
@@ -125,7 +166,11 @@ namespace Podd
                 string selectedAvsnittTitle = rtbAvsnitt.Lines[index];
                 VisaBeskrivningForAvsnitt(selectedAvsnittTitle);
             }
-    }
+        }
 
-}
+        private void tbMinaPoddar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
