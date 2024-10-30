@@ -10,7 +10,7 @@ namespace Models
 
 {
     [Serializable]
-    public abstract class Kategori
+    public class Kategori
     {
 
         public string KattNamn { get; set; }
@@ -19,10 +19,14 @@ namespace Models
         public Kategori(string kattNamn)
         {
             KattNamn = kattNamn;
+            Pod = new List<Pod>();
 
         }
 
-        public Kategori() { }
+        public Kategori() 
+        {
+            Pod = new List<Pod>();
+        }
 }
     
 

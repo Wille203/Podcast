@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using DAL.Repository;
+using System.Diagnostics;
 
 namespace BLL.Controller
 {
@@ -14,42 +15,60 @@ namespace BLL.Controller
     {
         IRepository<Pod> podRepository;
         Pod newPod;
+        KategoriController kategoriController;
         public PoddController()
         {
             podRepository = new PodRepository();
             newPod = new Pod();
+            kategoriController = new KategoriController();
         }
 
         public void HamtaPoddFranRss(string rssLank)
         {
-            XmlReader minXmlLasare = XmlReader.Create(rssLank);
-            SyndicationFeed poddFlode = SyndicationFeed.Load(minXmlLasare);
-
-            Pod pod = new Pod
+            try
             {
-                PodTitel = poddFlode.Title.Text,
-                Beskrivning = poddFlode.Description.Text,
-                PodUrl = rssLank
-            };
+                XmlReader minXmlLasare = XmlReader.Create(rssLank);
+                SyndicationFeed poddFlode = SyndicationFeed.Load(minXmlLasare);
 
-            newPod = pod;
+                if (poddFlode == null)
+                {
+                    throw new Exception("Flödet kunde inte laddas");
+                }
 
-            //foreach (SyndicationItem item in poddFlode.Items)
-            //{
-            //    Pod enPodd = new Pod
-            //    {
-            //        PodTitel = item.Title.Text,
-            //        Beskrivning = item.Summary.Text,
-            //        PodUrl = rssLank
-            //    };
-            //    podRepository.Create(enPodd);
-            //}
+                if (poddFlode.Title == null || poddFlode.Description == null)
+                {
+                    throw new Exception("Flödet saknar nödvändig information");
+                }
+                Pod pod = new Pod
+                {
+                    PodTitel = poddFlode.Title.Text,
+                    Beskrivning = poddFlode.Description.Text,
+                    PodUrl = rssLank
+                };
+
+                foreach (SyndicationItem item in poddFlode.Items)
+                {
+                    Avsnitt avsnitt = new Avsnitt
+                    {
+                        Titel = item.Title.Text,
+                        Beskrivning = item.Summary.Text,
+                    };
+                    pod.Avsnitt.Add(avsnitt);
+                }
+                podRepository.Create(pod);
+                newPod = pod; 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ett fel uppstod vid hämtning av rss-Flödet");
+            }
         }
 
         public List<Pod> GetAllPods()
         {
             return podRepository.GetAll();
         }
+
 
         public void DeletePod(string name)
         {
@@ -67,10 +86,47 @@ namespace BLL.Controller
             return newPod.PodTitel;
         }
 
-        public void SavePod(string rssLank, string name)
+        public void SavePod(string rssLank, string name, string kategoriNamn)
         {
-            newPod.PodTitel = name;
-            podRepository.Create(newPod);
+            Kategori kategori = kategoriController.hamtaKategoriByName(kategoriNamn);
+            if (kategori == null)
+            {
+                kategori = new Kategori(kategoriNamn);
+                kategoriController.LaggTillKategori(kategoriNamn, new List<Pod>());
+            }
+
+            if(kategori.Pod == null)
+            {
+                kategori.Pod = new List<Pod>();
+            }
+
+            Pod nyPod = new Pod {PodUrl = rssLank, PodTitel = name};
+            kategori.Pod.Add(nyPod);
+            kategoriController.UpdateraKategori(kategori);
         }
+        public Pod GetPodByTitle(string title)
+        {
+
+            List<Pod> allaPoddar = GetAllPods();
+
+            foreach (var podd in allaPoddar)
+            {
+                Debug.WriteLine($"Kontrollerar podd: '{podd.PodTitel}' (längd: {podd.PodTitel.Length})");
+
+              
+                if (podd.PodTitel.Trim().Equals(title.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    Debug.WriteLine("Match found: " + podd.PodTitel);
+                    return podd;
+                }
+            }
+
+            Debug.WriteLine("Ingen matchning hittades för titeln: '" + title + "'");
+            return null;
+        }
+
+
+
+
     }
 }

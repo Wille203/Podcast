@@ -42,93 +42,74 @@
             minaPoddarToolStripMenuItem = new ToolStripMenuItem();
             läggTillPoddToolStripMenuItem = new ToolStripMenuItem();
             hanteraKategoriToolStripMenuItem = new ToolStripMenuItem();
+            btnHamtaPodd1 = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // lblPodd
             // 
             lblPodd.AutoSize = true;
-<<<<<<< Updated upstream
-            lblPodd.Location = new Point(552, 101);
-=======
-            lblPodd.Location = new Point(386, 34);
-            lblPodd.Margin = new Padding(2, 0, 2, 0);
->>>>>>> Stashed changes
+            lblPodd.Location = new Point(551, 57);
             lblPodd.Name = "lblPodd";
-            lblPodd.Size = new Size(49, 15);
+            lblPodd.Size = new Size(74, 25);
             lblPodd.TabIndex = 28;
             lblPodd.Text = "Podcast";
             // 
             // tbPoddNamn
             // 
-<<<<<<< Updated upstream
-            tbPoddNamn.Location = new Point(551, 142);
-=======
-            tbPoddNamn.Location = new Point(386, 61);
-            tbPoddNamn.Margin = new Padding(2);
->>>>>>> Stashed changes
+            tbPoddNamn.Location = new Point(551, 102);
             tbPoddNamn.Name = "tbPoddNamn";
-            tbPoddNamn.Size = new Size(205, 23);
+            tbPoddNamn.Size = new Size(291, 31);
             tbPoddNamn.TabIndex = 27;
             // 
             // lblValKategori
             // 
             lblValKategori.AutoSize = true;
-            lblValKategori.Location = new Point(84, 186);
-            lblValKategori.Margin = new Padding(2, 0, 2, 0);
+            lblValKategori.Location = new Point(120, 310);
             lblValKategori.Name = "lblValKategori";
-            lblValKategori.Size = new Size(71, 15);
+            lblValKategori.Size = new Size(109, 25);
             lblValKategori.TabIndex = 26;
             lblValKategori.Text = "Välj kategori";
             // 
             // lblNamn
             // 
             lblNamn.AutoSize = true;
-            lblNamn.Location = new Point(86, 122);
-            lblNamn.Margin = new Padding(2, 0, 2, 0);
+            lblNamn.Location = new Point(123, 203);
             lblNamn.Name = "lblNamn";
-            lblNamn.Size = new Size(60, 15);
+            lblNamn.Size = new Size(90, 25);
             lblNamn.TabIndex = 25;
             lblNamn.Text = "Ge Namn:";
             // 
             // lblLank
             // 
             lblLank.AutoSize = true;
-<<<<<<< Updated upstream
-            lblLank.Location = new Point(120, 101);
-=======
-            lblLank.Location = new Point(78, 40);
-            lblLank.Margin = new Padding(2, 0, 2, 0);
->>>>>>> Stashed changes
+            lblLank.Location = new Point(111, 67);
             lblLank.Name = "lblLank";
-            lblLank.Size = new Size(32, 15);
+            lblLank.Size = new Size(48, 25);
             lblLank.TabIndex = 24;
             lblLank.Text = "Länk";
             // 
             // cbValKategori
             // 
             cbValKategori.FormattingEnabled = true;
-            cbValKategori.Location = new Point(78, 203);
-            cbValKategori.Margin = new Padding(2);
+            cbValKategori.Location = new Point(111, 338);
             cbValKategori.Name = "cbValKategori";
-            cbValKategori.Size = new Size(177, 23);
+            cbValKategori.Size = new Size(251, 33);
             cbValKategori.TabIndex = 23;
             cbValKategori.SelectedIndexChanged += cbValKategori_SelectedIndexChanged;
             // 
             // tbNamn
             // 
-            tbNamn.Location = new Point(78, 144);
-            tbNamn.Margin = new Padding(2);
+            tbNamn.Location = new Point(111, 240);
             tbNamn.Name = "tbNamn";
-            tbNamn.Size = new Size(177, 23);
+            tbNamn.Size = new Size(251, 31);
             tbNamn.TabIndex = 22;
             // 
             // btnSparaPodd
             // 
-            btnSparaPodd.Location = new Point(274, 275);
-            btnSparaPodd.Margin = new Padding(2);
+            btnSparaPodd.Location = new Point(391, 458);
             btnSparaPodd.Name = "btnSparaPodd";
-            btnSparaPodd.Size = new Size(164, 23);
+            btnSparaPodd.Size = new Size(234, 38);
             btnSparaPodd.TabIndex = 21;
             btnSparaPodd.Text = "Spara Podd";
             btnSparaPodd.UseVisualStyleBackColor = true;
@@ -136,14 +117,9 @@
             // 
             // tbLank
             // 
-<<<<<<< Updated upstream
-            tbLank.Location = new Point(111, 142);
-=======
-            tbLank.Location = new Point(78, 61);
-            tbLank.Margin = new Padding(2);
->>>>>>> Stashed changes
+            tbLank.Location = new Point(111, 102);
             tbLank.Name = "tbLank";
-            tbLank.Size = new Size(177, 23);
+            tbLank.Size = new Size(251, 31);
             tbLank.TabIndex = 20;
             // 
             // menuStrip1
@@ -152,58 +128,51 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { startsidanToolStripMenuItem, minaPoddarToolStripMenuItem, läggTillPoddToolStripMenuItem, hanteraKategoriToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(721, 24);
+            menuStrip1.Padding = new Padding(9, 3, 0, 3);
+            menuStrip1.Size = new Size(1030, 35);
             menuStrip1.TabIndex = 19;
             menuStrip1.Text = "menuStrip1";
             // 
             // startsidanToolStripMenuItem
             // 
             startsidanToolStripMenuItem.Name = "startsidanToolStripMenuItem";
-            startsidanToolStripMenuItem.Size = new Size(71, 20);
+            startsidanToolStripMenuItem.Size = new Size(106, 29);
             startsidanToolStripMenuItem.Text = "Startsidan";
             // 
             // minaPoddarToolStripMenuItem
             // 
             minaPoddarToolStripMenuItem.Name = "minaPoddarToolStripMenuItem";
-            minaPoddarToolStripMenuItem.Size = new Size(87, 20);
+            minaPoddarToolStripMenuItem.Size = new Size(131, 29);
             minaPoddarToolStripMenuItem.Text = "Mina poddar";
             // 
             // läggTillPoddToolStripMenuItem
             // 
             läggTillPoddToolStripMenuItem.Name = "läggTillPoddToolStripMenuItem";
-            läggTillPoddToolStripMenuItem.Size = new Size(92, 20);
+            läggTillPoddToolStripMenuItem.Size = new Size(139, 29);
             läggTillPoddToolStripMenuItem.Text = "Lägg till podd";
             // 
             // hanteraKategoriToolStripMenuItem
             // 
             hanteraKategoriToolStripMenuItem.Name = "hanteraKategoriToolStripMenuItem";
-            hanteraKategoriToolStripMenuItem.Size = new Size(107, 20);
+            hanteraKategoriToolStripMenuItem.Size = new Size(160, 29);
             hanteraKategoriToolStripMenuItem.Text = "Hantera kategori";
             // 
-<<<<<<< Updated upstream
-=======
-            // btnHamtaPodd
+            // btnHamtaPodd1
             // 
-            btnHamtaPodd.Location = new Point(125, 88);
-            btnHamtaPodd.Margin = new Padding(2);
-            btnHamtaPodd.Name = "btnHamtaPodd";
-            btnHamtaPodd.Size = new Size(78, 20);
-            btnHamtaPodd.TabIndex = 29;
-            btnHamtaPodd.Text = "Hämta Podd";
-            btnHamtaPodd.UseVisualStyleBackColor = true;
-            btnHamtaPodd.Click += btnHamtaPodd_Click;
+            btnHamtaPodd1.Location = new Point(142, 139);
+            btnHamtaPodd1.Name = "btnHamtaPodd1";
+            btnHamtaPodd1.Size = new Size(179, 34);
+            btnHamtaPodd1.TabIndex = 29;
+            btnHamtaPodd1.Text = "Hämta Podd";
+            btnHamtaPodd1.UseVisualStyleBackColor = true;
+            btnHamtaPodd1.Click += btnHamtaPodd1_Click;
             // 
->>>>>>> Stashed changes
             // LaggTillPodd2
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-<<<<<<< Updated upstream
             ClientSize = new Size(1030, 573);
-=======
-            ClientSize = new Size(721, 344);
-            Controls.Add(btnHamtaPodd);
->>>>>>> Stashed changes
+            Controls.Add(btnHamtaPodd1);
             Controls.Add(lblPodd);
             Controls.Add(tbPoddNamn);
             Controls.Add(lblValKategori);
@@ -214,7 +183,6 @@
             Controls.Add(btnSparaPodd);
             Controls.Add(tbLank);
             Controls.Add(menuStrip1);
-            Margin = new Padding(2);
             Name = "LaggTillPodd2";
             Text = "LaggTillPodd2";
             menuStrip1.ResumeLayout(false);
@@ -239,5 +207,7 @@
         private ToolStripMenuItem minaPoddarToolStripMenuItem;
         private ToolStripMenuItem läggTillPoddToolStripMenuItem;
         private ToolStripMenuItem hanteraKategoriToolStripMenuItem;
+        private object btnHamtaPodd;
+        private Button btnHamtaPodd1;
     }
 }
