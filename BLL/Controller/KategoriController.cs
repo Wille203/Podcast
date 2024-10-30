@@ -62,5 +62,11 @@ namespace BLL.Controller
 
             kategoriRepository.Create(nyKategori);
         }
+
+        public List<Pod> HamtaPoddarForKategori(string kategoriNamn)
+        {
+            var kategori = hamtaKategoriByName(kategoriNamn); // Hämta kategori baserat på namn
+            return kategori?.Pod ?? new List<Pod>(); // Returnera poddar om kategorin finns, annars en tom lista
+        }
     }
 }
