@@ -16,14 +16,17 @@ namespace DAL.Repository
 
         public PodRepository()
         {
-            poddSerializer = new Serializer<Pod>();
-            poddLista = GetAll(); 
+            poddLista = new List<Pod>();
+            poddSerializer = new Serializer<Pod>();   
         }
 
         public void Create(Pod pod)
         {
-            poddLista.Add(pod);
-            SaveChanges();
+            if(!poddLista.Any(p => p.PodTitel.Equals(pod.PodTitel, StringComparison.OrdinalIgnoreCase)))
+            {
+                poddLista.Add(pod);
+                SaveChanges();
+            }
         }
 
         public void Delete(int index)

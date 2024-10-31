@@ -16,24 +16,12 @@ namespace DAL.Repository
         public KategoriRepository()
         {
             kategoriSerializer = new Serializer<Kategori>();
-            kategoriLista = LaddaKategori(); 
+            kategoriLista = GetAll();
         }
         public void Create(Kategori entity)
         {
             kategoriLista.Add(entity);
             SaveChanges();
-        }
-
-        private List<Kategori> LaddaKategori()
-        {
-            try
-            {
-                return kategoriSerializer.Deserialize(className) ?? new List<Kategori>();
-            }
-            catch (Exception)
-            {
-                return new List<Kategori>();
-            }
         }
 
         public void Delete(int index)
@@ -51,17 +39,16 @@ namespace DAL.Repository
 
         public List<Kategori> GetAll()
         {
-            return kategoriLista;
-            //List<Kategori>deserialiseraadKategoriLista = new List<Kategori>();
-            //try
-            //{
-            //    deserialiseraadKategoriLista = kategoriSerializer.Deserialize(className);
-            //}
-            //catch (Exception) 
-            //{
+            List<Kategori>deserialiseraadKategoriLista = new List<Kategori>();
+            try
+            {
+                deserialiseraadKategoriLista = kategoriSerializer.Deserialize(className);
+            }
+            catch (Exception) 
+            {
 
-            //}
-            //return deserialiseraadKategoriLista;
+            }
+            return deserialiseraadKategoriLista;
         }
 
         public Kategori GetByName(string name)
@@ -92,11 +79,8 @@ namespace DAL.Repository
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
-            else
-            {
                 kategoriLista[index] = theObject;
                 SaveChanges();
-            }
         }
 
         public static void kategoriPopulerare()

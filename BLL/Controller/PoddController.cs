@@ -16,11 +16,13 @@ namespace BLL.Controller
         IRepository<Pod> podRepository;
         Pod newPod;
         KategoriController kategoriController;
+        KategoriRepository kategoriRepository;
         public PoddController()
         {
             podRepository = new PodRepository();
             newPod = new Pod();
             kategoriController = new KategoriController();
+            kategoriRepository = new KategoriRepository();
         }
 
         public void HamtaPoddFranRss(string rssLank)
@@ -78,17 +80,19 @@ namespace BLL.Controller
                 var podToRemove = podRepository.GetByName(name);
                 podRepository.Delete(index);
 
-                var kategori = kategoriController.LasAllaKategorier()
-                .Select(kName => kategoriController.hamtaKategoriByName(kName))
-                .FirstOrDefault(k => k != null && k.Pod != null && k.Pod.Any(p => p.PodTitel.Equals(name, StringComparison.OrdinalIgnoreCase)));
+                var allaKategori = kategoriController.LasAllaKategorier();
 
-                if (kategori != null)
+                foreach(var kategoriNamn in allaKategori)
                 {
-                    var poddToRemove = kategori.Pod.FirstOrDefault(p => p.PodTitel.Equals(name, StringComparison.OrdinalIgnoreCase));
-                    if (poddToRemove != null)
+                    var kategori = kategoriController.hamtaKategoriByName(kategoriNamn);
+                    if(kategori != null && kategori.Pod != null)
                     {
-                        kategori.Pod.Remove(poddToRemove);
-                        kategoriController.UpdateraKategori(kategori);
+                        var poddToRemove = kategori.Pod.FirstOrDefault(p => p.PodTitel.Equals(name, StringComparison.OrdinalIgnoreCase));
+                        if(poddToRemove != null)
+                        {
+                            kategori.Pod.Remove(poddToRemove);
+                            kategoriController.UpdateraKategori(kategori);
+                        }
                     }
                 }
 
@@ -126,13 +130,20 @@ namespace BLL.Controller
 
             Pod nyPod = new Pod {PodUrl = rssLank, PodTitel = name};
 
-            if(!podRepository.GetAll().Any(p => p.PodTitel.Equals(nyPod.PodTitel, StringComparison.OrdinalIgnoreCase)))
+            bool poddFinnsIRepository = podRepository.GetAll().Any(p => p.PodTitel.Equals(nyPod.PodTitel, StringComparison.OrdinalIgnoreCase));
+            bool poddFinnsIKategori = kategori.Pod.Any(p => p.PodTitel.Equals(nyPod.PodTitel, StringComparison.OrdinalIgnoreCase));
+
+            if (!poddFinnsIRepository)
+            {
+                podRepository.Create(nyPod);
+            }
+            if (!poddFinnsIKategori)
             {
                 kategori.Pod.Add(nyPod);
-                podRepository.Create(nyPod);
                 kategoriController.UpdateraKategori(kategori);
             }
         }
+
         public Pod GetPodByTitle(string title)
         {
 
@@ -154,12 +165,26 @@ namespace BLL.Controller
             return null;
         }
 
-        public void UppdateraPoddNamn(Pod pod, string namn)
+        public void UppdateraPoddNamn(string gammaltNamn, string nyttNamn)
         {
-            int index = podRepository.GetIndex(pod.PodTitel);
-            pod.PodTitel = namn;
-            podRepository.Update(index, pod);
-        }
+            int index = podRepository.GetIndex(gammaltNamn);
+
+            if (index >= 0)
+            {
+                var pod = podRepository.GetAll()[index];
+                pod.PodTitel = nyttNamn;
+                podRepository.Update(index, pod);
+            }
+
+            var allKategorier = kategoriRepository.GetAll();
+
+            foreach(var kategori in allKategorier)
+            {
+                kategori.UppdateraPodNamn(gammaltNamn, nyttNamn);   
+            }
+
+            kategoriRepository.SaveChanges();
+            }
 
 
     }

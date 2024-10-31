@@ -69,23 +69,6 @@ namespace BLL.Controller
             var kategori = hamtaKategoriByName(kategoriNamn); // Hämta kategori baserat på namn
             return kategori?.Pod ?? new List<Pod>(); // Returnera poddar om kategorin finns, annars en tom lista
         }
-
-        public void TaBortPoddFranKategori(string poddTitel)
-        {
-            var kategorier = kategoriRepository.GetAll();
-
-            foreach(var kategori in kategorier)
-            {
-                var poddToRemove = kategori.Pod.FirstOrDefault(p => p.PodTitel.Equals(poddTitel, StringComparison.OrdinalIgnoreCase));
-
-                if(poddToRemove != null)
-                {
-                    kategori.Pod.Remove(poddToRemove);
-
-                    kategoriRepository.Update(kategoriRepository.GetIndex(kategori.KattNamn), kategori);
-                    break;
-                }
-            }
-        }
+        
     }
 }
