@@ -16,8 +16,8 @@ namespace DAL.Repository
 
         public PodRepository()
         {
-            poddSerializer = new Serializer<Pod>();
-            poddLista = GetAll(); 
+            poddLista = new List<Pod>();
+            poddSerializer = new Serializer<Pod>();   
         }
 
         public void Create(Pod pod)
