@@ -66,38 +66,14 @@ namespace BLL.Controller
 
         public List<Pod> GetAllPods()
         {
-            return podRepository.GetAll().Distinct().ToList();
+            return podRepository.GetAll();
         }
 
 
         public void DeletePod(string name)
         {
             int index = podRepository.GetIndex(name);
-            if(index >= 0)
-            {
-                var podToRemove = podRepository.GetByName(name);
-                podRepository.Delete(index);
-
-                var kategori = kategoriController.LasAllaKategorier()
-                .Select(kName => kategoriController.hamtaKategoriByName(kName))
-                .FirstOrDefault(k => k != null && k.Pod != null && k.Pod.Any(p => p.PodTitel.Equals(name, StringComparison.OrdinalIgnoreCase)));
-
-                if (kategori != null)
-                {
-                    var poddToRemove = kategori.Pod.FirstOrDefault(p => p.PodTitel.Equals(name, StringComparison.OrdinalIgnoreCase));
-                    if (poddToRemove != null)
-                    {
-                        kategori.Pod.Remove(poddToRemove);
-                        kategoriController.UpdateraKategori(kategori);
-                    }
-                }
-
-            }
-            else
-            {
-                Console.WriteLine("Podden kunde inte hittas och togs därför inte bort.");
-            }
-            
+            podRepository.Delete(index);
         }
 
         //public string GetPodName(string name)
@@ -125,13 +101,8 @@ namespace BLL.Controller
             }
 
             Pod nyPod = new Pod {PodUrl = rssLank, PodTitel = name};
-
-            if(!podRepository.GetAll().Any(p => p.PodTitel.Equals(nyPod.PodTitel, StringComparison.OrdinalIgnoreCase)))
-            {
-                kategori.Pod.Add(nyPod);
-                podRepository.Create(nyPod);
-                kategoriController.UpdateraKategori(kategori);
-            }
+            kategori.Pod.Add(nyPod);
+            kategoriController.UpdateraKategori(kategori);
         }
         public Pod GetPodByTitle(string title)
         {
