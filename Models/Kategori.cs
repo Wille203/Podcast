@@ -27,7 +27,18 @@ namespace Models
         {
             Pod = new List<Pod>();
         }
-}
+
+        public void UppdateraPodNamn(string gammaltNamn, string nyttNamn)
+        {
+            foreach (var podar in Pod)
+            {
+                if (podar.PodTitel.Equals(gammaltNamn, StringComparison.OrdinalIgnoreCase))
+                {
+                    podar.PodTitel = nyttNamn;
+                }
+            }
+        }
+    }
     
 
 }

@@ -92,11 +92,8 @@ namespace DAL.Repository
             {
                 throw new ArgumentOutOfRangeException(nameof(index));
             }
-            else
-            {
                 kategoriLista[index] = theObject;
                 SaveChanges();
-            }
         }
 
         public static void kategoriPopulerare()

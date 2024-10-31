@@ -22,8 +22,11 @@ namespace DAL.Repository
 
         public void Create(Pod pod)
         {
-            poddLista.Add(pod);
-            SaveChanges();
+            if(!poddLista.Any(p => p.PodTitel.Equals(pod.PodTitel, StringComparison.OrdinalIgnoreCase)))
+            {
+                poddLista.Add(pod);
+                SaveChanges();
+            }
         }
 
         public void Delete(int index)
