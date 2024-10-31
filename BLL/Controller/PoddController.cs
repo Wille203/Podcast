@@ -16,11 +16,13 @@ namespace BLL.Controller
         IRepository<Pod> podRepository;
         Pod newPod;
         KategoriController kategoriController;
+        KategoriRepository kategoriRepository;
         public PoddController()
         {
             podRepository = new PodRepository();
             newPod = new Pod();
             kategoriController = new KategoriController();
+            kategoriRepository = new KategoriRepository();
         }
 
         public void HamtaPoddFranRss(string rssLank)
@@ -66,14 +68,40 @@ namespace BLL.Controller
 
         public List<Pod> GetAllPods()
         {
-            return podRepository.GetAll();
+            return podRepository.GetAll().Distinct().ToList();
         }
 
 
         public void DeletePod(string name)
         {
             int index = podRepository.GetIndex(name);
-            podRepository.Delete(index);
+            if(index >= 0)
+            {
+                var podToRemove = podRepository.GetByName(name);
+                podRepository.Delete(index);
+
+                var allaKategori = kategoriController.LasAllaKategorier();
+
+                foreach(var kategoriNamn in allaKategori)
+                {
+                    var kategori = kategoriController.hamtaKategoriByName(kategoriNamn);
+                    if(kategori != null && kategori.Pod != null)
+                    {
+                        var poddToRemove = kategori.Pod.FirstOrDefault(p => p.PodTitel.Equals(name, StringComparison.OrdinalIgnoreCase));
+                        if(poddToRemove != null)
+                        {
+                            kategori.Pod.Remove(poddToRemove);
+                            kategoriController.UpdateraKategori(kategori);
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Podden kunde inte hittas och togs därför inte bort.");
+            }
+            
         }
 
         //public string GetPodName(string name)
@@ -101,9 +129,21 @@ namespace BLL.Controller
             }
 
             Pod nyPod = new Pod {PodUrl = rssLank, PodTitel = name};
-            kategori.Pod.Add(nyPod);
-            kategoriController.UpdateraKategori(kategori);
+
+            bool poddFinnsIRepository = podRepository.GetAll().Any(p => p.PodTitel.Equals(nyPod.PodTitel, StringComparison.OrdinalIgnoreCase));
+            bool poddFinnsIKategori = kategori.Pod.Any(p => p.PodTitel.Equals(nyPod.PodTitel, StringComparison.OrdinalIgnoreCase));
+
+            if (!poddFinnsIRepository)
+            {
+                podRepository.Create(nyPod);
+            }
+            if (!poddFinnsIKategori)
+            {
+                kategori.Pod.Add(nyPod);
+                kategoriController.UpdateraKategori(kategori);
+            }
         }
+
         public Pod GetPodByTitle(string title)
         {
 
@@ -125,12 +165,26 @@ namespace BLL.Controller
             return null;
         }
 
-        public void UppdateraPoddNamn(Pod pod, string namn)
+        public void UppdateraPoddNamn(string gammaltNamn, string nyttNamn)
         {
-            int index = podRepository.GetIndex(pod.PodTitel);
-            pod.PodTitel = namn;
-            podRepository.Update(index, pod);
-        }
+            int index = podRepository.GetIndex(gammaltNamn);
+
+            if (index >= 0)
+            {
+                var pod = podRepository.GetAll()[index];
+                pod.PodTitel = nyttNamn;
+                podRepository.Update(index, pod);
+            }
+
+            var allKategorier = kategoriRepository.GetAll();
+
+            foreach(var kategori in allKategorier)
+            {
+                kategori.UppdateraPodNamn(gammaltNamn, nyttNamn);   
+            }
+
+            kategoriRepository.SaveChanges();
+            }
 
 
     }

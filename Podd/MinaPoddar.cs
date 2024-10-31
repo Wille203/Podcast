@@ -30,17 +30,29 @@ namespace Podd
 
             Fyllcb(); // Fyller combo-boxen med kategorier
             VisaPoddar(); // Visar alla poddar initialt
-
+            FyllCbPoddar();
         }
 
         private void VisaPoddar()
         {
-            var poddar = poddController.GetAllPods();
             tbMinaPoddar.Clear();
+            var poddar = poddController.GetAllPods();
 
-            foreach (var podd in poddar)
+            foreach (var podd in poddar.Distinct())
             {
                 tbMinaPoddar.AppendText(podd.PodTitel + Environment.NewLine);
+            }
+        }
+
+        private void FyllCbPoddar()
+        {
+            cbTaBortPodd.Items.Clear();
+            cbAndraNamn.Items.Clear();
+            List<Pod> poddLista = poddController.GetAllPods();
+            foreach (var poddar in poddLista.Distinct())
+            {
+                cbTaBortPodd.Items.Add(poddar.PodTitel);
+                cbAndraNamn.Items.Add(poddar.PodTitel);
             }
         }
 
@@ -169,19 +181,44 @@ namespace Podd
             }
         }
 
-        private void tbMinaPoddar_TextChanged(object sender, EventArgs e)
+        private void btnTaBort_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cbTaBortPodd.Text))
+            {
+                MessageBox.Show("Ingen podd att ta bort är vald!");
+                return;
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Är du säker?", "Ta bort podcast", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                string valdPodd = cbTaBortPodd.SelectedItem.ToString();
+                poddController.DeletePod(valdPodd);
+                FyllCbPoddar();
+                VisaPoddar();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                MinaPoddar minaPoddar = new MinaPoddar();
+            }
 
         }
 
-        private void btnAndraNamn_Click(object sender, EventArgs e)
+        private void btnAndraNamn_Click_1(object sender, EventArgs e)
         {
             string nyttNamn = tbAndraNamn.Text;
-            string valdPodTitel = tbMinaPoddar.Text;
+            string valdPodTitel = cbAndraNamn.SelectedItem.ToString();
 
-            Pod nyttPodNamn = poddController.GetPodByTitle(valdPodTitel);
-            poddController.UppdateraPoddNamn(nyttPodNamn, nyttNamn);
+            //Pod nyttPodNamn = poddController.GetPodByTitle(valdPodTitel);
+            poddController.UppdateraPoddNamn(valdPodTitel, nyttNamn);
             VisaPoddar();
         }
+
+        private void cbAndraNamn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string valdPodd = cbAndraNamn.SelectedItem.ToString();
+            tbAndraNamn.Text = valdPodd.ToString(); 
+        }
     }
+
 }

@@ -69,5 +69,6 @@ namespace BLL.Controller
             var kategori = hamtaKategoriByName(kategoriNamn); // Hämta kategori baserat på namn
             return kategori?.Pod ?? new List<Pod>(); // Returnera poddar om kategorin finns, annars en tom lista
         }
+        
     }
 }
