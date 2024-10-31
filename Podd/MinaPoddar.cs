@@ -30,17 +30,27 @@ namespace Podd
 
             Fyllcb(); // Fyller combo-boxen med kategorier
             VisaPoddar(); // Visar alla poddar initialt
-
+            FyllCbPoddar();
         }
 
         private void VisaPoddar()
         {
-            var poddar = poddController.GetAllPods();
             tbMinaPoddar.Clear();
+            var poddar = poddController.GetAllPods();
 
-            foreach (var podd in poddar)
+            foreach (var podd in poddar.Distinct())
             {
                 tbMinaPoddar.AppendText(podd.PodTitel + Environment.NewLine);
+            }
+        }
+
+        private void FyllCbPoddar()
+        {
+            cbTaBortPodd.Items.Clear();
+            List<Pod> poddLista = poddController.GetAllPods();
+            foreach (var poddar in poddLista.Distinct())
+            {
+                cbTaBortPodd.Items.Add(poddar.PodTitel);
             }
         }
 
@@ -146,7 +156,7 @@ namespace Podd
             {
                 string valdPodTitel = tbMinaPoddar.Lines[index].Trim();
                 Pod podd = poddController.GetPodByTitle(valdPodTitel);
-
+                tbAndraNamn.Text = valdPodTitel;
                 if (podd != null)
                 {
                     VisaAvsnittForPodd(podd);
@@ -169,9 +179,39 @@ namespace Podd
             }
         }
 
-        private void tbMinaPoddar_TextChanged(object sender, EventArgs e)
+        private void btnTaBort_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cbTaBortPodd.Text))
+            {
+                MessageBox.Show("Ingen podd att ta bort är vald!");
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Är du säker?", "Ta bort podcast", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string valdPodd = cbTaBortPodd.SelectedItem.ToString();
+                    poddController.DeletePod(valdPodd);
+                    FyllCbPoddar();
+                    VisaPoddar();
+                }
+                else if(dialogResult == DialogResult.No)
+                {
+                    MinaPoddar minaPoddar = new MinaPoddar();
+                }
+                
+            }
 
+        }
+
+        private void btnAndraNamn_Click(object sender, EventArgs e)
+        {
+            string nyttNamn = tbAndraNamn.Text;
+            string valdPodTitel = tbMinaPoddar.Text;
+
+            Pod nyttPodNamn = poddController.GetPodByTitle(valdPodTitel);
+            poddController.UppdateraPoddNamn(nyttPodNamn, nyttNamn);
+            VisaPoddar();
         }
     }
 }
