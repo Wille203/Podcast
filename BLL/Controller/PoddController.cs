@@ -154,7 +154,12 @@ namespace BLL.Controller
             return null;
         }
 
-
+        public void UppdateraPoddNamn(Pod pod, string namn)
+        {
+            int index = podRepository.GetIndex(pod.PodTitel);
+            pod.PodTitel = namn;
+            podRepository.Update(index, pod);
+        }
 
 
     }

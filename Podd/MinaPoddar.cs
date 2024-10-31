@@ -156,7 +156,7 @@ namespace Podd
             {
                 string valdPodTitel = tbMinaPoddar.Lines[index].Trim();
                 Pod podd = poddController.GetPodByTitle(valdPodTitel);
-
+                tbAndraNamn.Text = valdPodTitel;
                 if (podd != null)
                 {
                     VisaAvsnittForPodd(podd);
@@ -202,6 +202,16 @@ namespace Podd
                 
             }
 
+        }
+
+        private void btnAndraNamn_Click(object sender, EventArgs e)
+        {
+            string nyttNamn = tbAndraNamn.Text;
+            string valdPodTitel = tbMinaPoddar.Text;
+
+            Pod nyttPodNamn = poddController.GetPodByTitle(valdPodTitel);
+            poddController.UppdateraPoddNamn(nyttPodNamn, nyttNamn);
+            VisaPoddar();
         }
     }
 }
