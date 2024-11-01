@@ -42,6 +42,7 @@ namespace BLL.Controller
             if(index >= 0)
             {
                 kategoriRepository.Update(index, kategori);
+                Console.WriteLine($"Uppdaterar kategori: {kategori.KattNamn}");
             }
             else
             {
@@ -69,6 +70,38 @@ namespace BLL.Controller
             var kategori = hamtaKategoriByName(kategoriNamn); // Hämta kategori baserat på namn
             return kategori?.Pod ?? new List<Pod>(); // Returnera poddar om kategorin finns, annars en tom lista
         }
-        
+
+        public void TaBortPoddFranKategori(string kategoriNamn,string poddTitel)
+        {
+            var kategori = hamtaKategoriByName(kategoriNamn); 
+
+            if(kategori != null)
+            {
+                var poddAttTaBort = kategori.Pod.FirstOrDefault(p => p.PodTitel.Equals(poddTitel, StringComparison.OrdinalIgnoreCase));
+
+                if(poddAttTaBort != null)
+                {
+                    kategori.Pod.Remove(poddAttTaBort);
+                    UpdateraKategori(kategori);
+                }
+
+            }
+        }
+
+        public string HamtaKategoriForPodd(string poddTitel)
+        {
+            var allaKategorier = kategoriRepository.GetAll();
+
+            foreach (var kategori in allaKategorier)
+            {
+                if (kategori.Pod.Any(p => p.PodTitel.Equals(poddTitel, StringComparison.OrdinalIgnoreCase)))
+                {
+                    return kategori.KattNamn; 
+                }
+            }
+
+            return null;
+        }
+
     }
 }

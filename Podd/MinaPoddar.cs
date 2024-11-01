@@ -53,6 +53,7 @@ namespace Podd
             {
                 cbTaBortPodd.Items.Add(poddar.PodTitel);
                 cbAndraNamn.Items.Add(poddar.PodTitel);
+                cbAndraPoddKategori.Items.Add(poddar.PodTitel);
             }
         }
 
@@ -63,6 +64,7 @@ namespace Podd
             foreach (string kategori in kategoriLista)
             {
                 cbValKategori.Items.Add(kategori);
+                cbAndraKategori.Items.Add(kategori);
             }
         }
 
@@ -217,7 +219,31 @@ namespace Podd
         private void cbAndraNamn_SelectedIndexChanged(object sender, EventArgs e)
         {
             string valdPodd = cbAndraNamn.SelectedItem.ToString();
-            tbAndraNamn.Text = valdPodd.ToString(); 
+            tbAndraNamn.Text = valdPodd.ToString();
+        }
+
+        private void btnSparaKategori_Click(object sender, EventArgs e)
+        {
+            string valdPoddTitel = cbAndraPoddKategori.SelectedItem.ToString();
+            string nyKategoriNamn = cbAndraKategori.SelectedItem.ToString();
+
+            if(string.IsNullOrEmpty(valdPoddTitel) || string.IsNullOrEmpty(nyKategoriNamn))
+            {
+                MessageBox.Show("Vänligen välj både en podd och en ny kategori.");
+                return;
+            }
+
+            try
+            {
+                poddController.BytPoddKategori(valdPoddTitel, nyKategoriNamn);
+                MessageBox.Show("Podden har uppdaterats till den nya kategorin");
+                FyllCbPoddar();
+                VisaPoddar();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Ett fel uppstod"); 
+            }
         }
     }
 

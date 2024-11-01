@@ -186,6 +186,12 @@ namespace BLL.Controller
             kategoriRepository.SaveChanges();
             }
 
-
+        public void BytPoddKategori(string poddTitel, string nyKategoriNamn)
+        {
+            string hamtadKategori = kategoriController.HamtaKategoriForPodd(poddTitel);
+            kategoriController.TaBortPoddFranKategori(hamtadKategori, poddTitel);
+            string rssLank = newPod.PodUrl;
+            SavePod(rssLank, poddTitel, nyKategoriNamn); 
+        }
     }
 }

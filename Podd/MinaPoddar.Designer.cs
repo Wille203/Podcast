@@ -55,6 +55,7 @@ namespace Podd
             tbAndraNamn = new TextBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
             cbAndraNamn = new ComboBox();
+            cbAndraPoddKategori = new ComboBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -115,7 +116,7 @@ namespace Podd
             // lblAndraKategori
             // 
             lblAndraKategori.AutoSize = true;
-            lblAndraKategori.Location = new Point(80, 345);
+            lblAndraKategori.Location = new Point(90, 377);
             lblAndraKategori.Name = "lblAndraKategori";
             lblAndraKategori.Size = new Size(135, 25);
             lblAndraKategori.TabIndex = 9;
@@ -124,19 +125,20 @@ namespace Podd
             // cbAndraKategori
             // 
             cbAndraKategori.FormattingEnabled = true;
-            cbAndraKategori.Location = new Point(221, 342);
+            cbAndraKategori.Location = new Point(231, 374);
             cbAndraKategori.Name = "cbAndraKategori";
             cbAndraKategori.Size = new Size(183, 33);
             cbAndraKategori.TabIndex = 10;
             // 
             // btnSparaKategori
             // 
-            btnSparaKategori.Location = new Point(123, 382);
+            btnSparaKategori.Location = new Point(133, 414);
             btnSparaKategori.Name = "btnSparaKategori";
             btnSparaKategori.Size = new Size(211, 33);
             btnSparaKategori.TabIndex = 11;
             btnSparaKategori.Text = "Spara Ändring";
             btnSparaKategori.UseVisualStyleBackColor = true;
+            btnSparaKategori.Click += btnSparaKategori_Click;
             // 
             // lblTaBortPodd
             // 
@@ -235,7 +237,7 @@ namespace Podd
             // 
             // btnAndraNamn
             // 
-            btnAndraNamn.Location = new Point(123, 550);
+            btnAndraNamn.Location = new Point(123, 584);
             btnAndraNamn.Name = "btnAndraNamn";
             btnAndraNamn.Size = new Size(221, 33);
             btnAndraNamn.TabIndex = 22;
@@ -246,7 +248,7 @@ namespace Podd
             // lblAndraNamn
             // 
             lblAndraNamn.AutoSize = true;
-            lblAndraNamn.Location = new Point(91, 508);
+            lblAndraNamn.Location = new Point(91, 542);
             lblAndraNamn.Name = "lblAndraNamn";
             lblAndraNamn.Size = new Size(119, 25);
             lblAndraNamn.TabIndex = 20;
@@ -255,7 +257,7 @@ namespace Podd
             // 
             // tbAndraNamn
             // 
-            tbAndraNamn.Location = new Point(221, 503);
+            tbAndraNamn.Location = new Point(221, 537);
             tbAndraNamn.Margin = new Padding(4, 5, 4, 5);
             tbAndraNamn.Name = "tbAndraNamn";
             tbAndraNamn.Size = new Size(183, 31);
@@ -270,17 +272,26 @@ namespace Podd
             // cbAndraNamn
             // 
             cbAndraNamn.FormattingEnabled = true;
-            cbAndraNamn.Location = new Point(123, 462);
+            cbAndraNamn.Location = new Point(123, 496);
             cbAndraNamn.Name = "cbAndraNamn";
             cbAndraNamn.Size = new Size(221, 33);
             cbAndraNamn.TabIndex = 24;
             cbAndraNamn.SelectedIndexChanged += cbAndraNamn_SelectedIndexChanged;
+            // 
+            // cbAndraPoddKategori
+            // 
+            cbAndraPoddKategori.FormattingEnabled = true;
+            cbAndraPoddKategori.Location = new Point(150, 335);
+            cbAndraPoddKategori.Name = "cbAndraPoddKategori";
+            cbAndraPoddKategori.Size = new Size(182, 33);
+            cbAndraPoddKategori.TabIndex = 25;
             // 
             // MinaPoddar
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1260, 945);
+            Controls.Add(cbAndraPoddKategori);
             Controls.Add(cbAndraNamn);
             Controls.Add(tbAndraNamn);
             Controls.Add(btnAndraNamn);
@@ -341,5 +352,6 @@ namespace Podd
         private TextBox tbAndraNamn;
         private ContextMenuStrip contextMenuStrip1;
         private ComboBox cbAndraNamn;
+        private ComboBox cbAndraPoddKategori;
     }
 }
