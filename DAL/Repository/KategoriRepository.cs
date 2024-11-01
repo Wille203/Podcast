@@ -97,7 +97,7 @@ namespace DAL.Repository
             }
         }
 
-        public void AndraKategorier(string gammaltNamn, string nyttNamn)
+        public void AndraKategori(string gammaltNamn, string nyttNamn)
         {
             string path = "Category.txt";
 

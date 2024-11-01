@@ -73,12 +73,24 @@ namespace Podd
             string nyttKategoriNamn = tbBytNamn.Text;
             //kategoriController.LasAllaKategorier();
             Kategori kategori = kategoriController.hamtaKategoriByName(valdKategori);
-            if (kategori != null)
+            DialogResult dialogResult = MessageBox.Show("Är du säker?", "Byt namn på kategori", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                kategori.KattNamn = nyttKategoriNamn;
-                
+                if (kategori != null)
+                {
+                    kategori.KattNamn = nyttKategoriNamn;
+
+                    kategoriController.UpdateraKategori(kategori);
+                }
+
+
                 kategoriController.AndraKategoriNamn(valdKategori, nyttKategoriNamn);
-                kategoriController.UpdateraKategori(kategori);
+                cbBytNamnKategori.Items.Clear();
+                tbBytNamn.Clear();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                HanteraKategorier hanteraKategorier = new HanteraKategorier();
             }
         }
     }
