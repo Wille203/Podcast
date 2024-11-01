@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.Controller;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,23 +14,13 @@ namespace Podd
 {
     public partial class HanteraKategorier : Form
     {
+        KategoriController kategoriController;
         public HanteraKategorier()
         {
             InitializeComponent();
-        }
+            kategoriController = new KategoriController();
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
+            Fyllcb();
 
         }
 
@@ -58,6 +50,36 @@ namespace Podd
             this.Hide();
             HanteraKategorier hanteraKategorier = new HanteraKategorier();
             hanteraKategorier.Show();
+        }
+
+
+        private void Fyllcb()
+        {
+            cbBytNamnKategori.Items.Clear();
+            cbKategori.Items.Clear();
+            List<string> kategoriLista = kategoriController.LasAllaKategorier();
+            foreach (string kategori in kategoriLista)
+            {
+                cbBytNamnKategori.Items.Add(kategori);
+                cbKategori.Items.Add(kategori);
+            }
+            cbBytNamnKategori.SelectedIndex = 0;
+            cbKategori.SelectedIndex = 0;
+        }
+
+        private void btnSparaNamn_Click(object sender, EventArgs e)
+        {
+            string valdKategori = cbBytNamnKategori.SelectedItem.ToString();
+            string nyttKategoriNamn = tbBytNamn.Text;
+            //kategoriController.LasAllaKategorier();
+            Kategori kategori = kategoriController.hamtaKategoriByName(valdKategori);
+            if (kategori != null)
+            {
+                kategori.KattNamn = nyttKategoriNamn;
+                
+                kategoriController.AndraKategoriNamn(valdKategori, nyttKategoriNamn);
+                kategoriController.UpdateraKategori(kategori);
+            }
         }
     }
 }

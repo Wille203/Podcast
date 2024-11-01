@@ -1,10 +1,15 @@
+using BLL.Controller;
+
 namespace Podd
 {
     public partial class StartSida : Form
     {
+        KategoriController kategoriController;
         public StartSida()
         {
             InitializeComponent();
+            kategoriController = new KategoriController();
+            kategoriController.SkapaFardigKategori();
         }
 
         private void startsidanToolStripMenuItem_Click(object sender, EventArgs e)

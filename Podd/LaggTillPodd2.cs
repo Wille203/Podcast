@@ -20,7 +20,7 @@ namespace Podd
             InitializeComponent();
             tbPoddNamn.ReadOnly = true;
             kategoriController = new KategoriController();
-            kategoriController.SkapaFardigKategori();
+            
             poddController = new PoddController();
             Fyllcb();
         }
