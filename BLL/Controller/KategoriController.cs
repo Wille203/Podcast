@@ -45,7 +45,10 @@ namespace BLL.Controller
 
         public void UpdateraKategori(Kategori kategori)
         {
-            int index = kategoriRepository.GetIndex(kategori.KattNamn);
+            
+             int index = kategoriRepository.GetIndex(kategori.KattNamn);
+            
+            
             if(index >= 0)
             {
                 kategoriRepository.Update(index, kategori);
@@ -112,7 +115,7 @@ namespace BLL.Controller
 
         public void AndraKategoriNamn(string gammaltKategoriNamn, string nyttKategoriNamn)
         {
-            kategoriRepository1.AndraKategorier(gammaltKategoriNamn, nyttKategoriNamn); 
+            kategoriRepository1.AndraKategori(gammaltKategoriNamn, nyttKategoriNamn); 
         }
 
     }
