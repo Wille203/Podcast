@@ -12,10 +12,12 @@ namespace BLL.Controller
     public class KategoriController
     {
         IRepository<Kategori> kategoriRepository;
+        KategoriRepository kategoriRepository1;
         //Kategori nyKategori;
         public KategoriController()
         {
             kategoriRepository = new KategoriRepository();
+            kategoriRepository1 = new KategoriRepository();
             //nyKategori = new Kategori();
         }
 
@@ -27,7 +29,12 @@ namespace BLL.Controller
 
         public void SkapaFardigKategori()
         {
-            KategoriRepository.kategoriPopulerare();
+            string path = ("Category.txt");
+            if (!File.Exists(path))
+            {
+                KategoriRepository.kategoriPopulerare();
+            }
+            
         }
 
         public List<String>  LasAllaKategorier()
@@ -101,6 +108,11 @@ namespace BLL.Controller
             }
 
             return null;
+        }
+
+        public void AndraKategoriNamn(string gammaltKategoriNamn, string nyttKategoriNamn)
+        {
+            kategoriRepository1.AndraKategorier(gammaltKategoriNamn, nyttKategoriNamn); 
         }
 
     }
