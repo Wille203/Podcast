@@ -96,6 +96,23 @@ namespace DAL.Repository
                 }
             }
         }
+
+        public void AndraKategorier(string gammaltNamn, string nyttNamn)
+        {
+            string path = "Category.txt";
+
+            var lines = File.ReadAllLines(path).ToList();
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                if (lines[i].Equals(gammaltNamn, StringComparison.OrdinalIgnoreCase))
+                {
+                    lines[i] = nyttNamn;
+                }
+            }
+
+            File.WriteAllLines(path, lines);
+        }
         
         public static void LaggTillKategori(string nyKategori)
         {
