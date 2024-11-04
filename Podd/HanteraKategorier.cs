@@ -1,4 +1,5 @@
 ﻿using BLL.Controller;
+using DAL.Repository;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace Podd
     public partial class HanteraKategorier : Form
     {
         KategoriController kategoriController;
+        KategoriRepository kategoriRepository;
         public HanteraKategorier()
         {
             InitializeComponent();
             kategoriController = new KategoriController();
+            kategoriRepository = new KategoriRepository();
 
             Fyllcb();
 
@@ -87,10 +90,58 @@ namespace Podd
                 kategoriController.AndraKategoriNamn(valdKategori, nyttKategoriNamn);
                 cbBytNamnKategori.Items.Clear();
                 tbBytNamn.Clear();
+                this.Hide();
+                HanteraKategorier hanteraKategorier = new HanteraKategorier();
+                hanteraKategorier.Show();
             }
             else if (dialogResult == DialogResult.No)
             {
+                this.Hide();
                 HanteraKategorier hanteraKategorier = new HanteraKategorier();
+                hanteraKategorier.Show();
+
+            }
+        }
+
+        private void btnTaBort_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Är du säker?", "Ta bort kategori", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                string valdKategori = cbKategori.SelectedItem.ToString();
+                int i = kategoriRepository.GetIndex(valdKategori);
+                kategoriRepository.Delete(i);
+                kategoriRepository.TaBortKate(valdKategori);
+                this.Hide();
+                HanteraKategorier hanteraKategorier = new HanteraKategorier();
+                hanteraKategorier.Show();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                this.Hide();
+                HanteraKategorier hanteraKategorier = new HanteraKategorier();
+                hanteraKategorier.Show();
+            }
+        }
+
+        private void btnSparaKategori_Click(object sender, EventArgs e)
+        {
+            string kategoriNamn = tbLaggTillKategori.Text;
+            if (!string.IsNullOrEmpty(kategoriNamn))
+            {
+                kategoriController.LaggTillKategori(kategoriNamn, new List<Pod>());
+                KategoriRepository.LaggTillKategori(kategoriNamn);
+                tbLaggTillKategori.Clear();
+                this.Hide();
+                HanteraKategorier hanteraKategorier = new HanteraKategorier();
+                hanteraKategorier.Show();
+            }
+            else
+            {
+                MessageBox.Show("Fältet kan inte vara tomt!");
+                this.Hide();
+                HanteraKategorier hanteraKategorier = new HanteraKategorier();
+                hanteraKategorier.Show();
             }
         }
     }

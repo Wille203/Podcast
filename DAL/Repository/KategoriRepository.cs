@@ -148,5 +148,22 @@ namespace DAL.Repository
         {
             return HamtaKategoriLista();
         }
+
+        public void TaBortKate(string borttagenKat)
+        {
+            string path = "Category.txt";
+            var lines = File.ReadAllLines(path).ToList();
+            for (int i = 0; i < lines.Count; i++) 
+            { 
+                if (lines[i].Equals(borttagenKat))
+                {
+                    lines.RemoveAt(i);
+                }
+            }
+           File.WriteAllLines(path, lines);
+
+        }
+
+
     }
 }
