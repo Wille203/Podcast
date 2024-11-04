@@ -1,4 +1,5 @@
 ﻿using BLL.Controller;
+using DAL.Repository;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace Podd
     public partial class HanteraKategorier : Form
     {
         KategoriController kategoriController;
+        KategoriRepository kategoriRepository;
         public HanteraKategorier()
         {
             InitializeComponent();
             kategoriController = new KategoriController();
+            kategoriRepository = new KategoriRepository();
 
             Fyllcb();
 
@@ -76,9 +79,25 @@ namespace Podd
             if (kategori != null)
             {
                 kategori.KattNamn = nyttKategoriNamn;
-                
+
                 kategoriController.AndraKategoriNamn(valdKategori, nyttKategoriNamn);
                 kategoriController.UpdateraKategori(kategori);
+            }
+        }
+
+        private void btnSparaKategori_Click(object sender, EventArgs e)
+        {
+            string kategoriNamn = tbLaggTillKategori.Text;
+
+            if (!string.IsNullOrEmpty(kategoriNamn))
+            {
+                kategoriController.LaggTillKategori(kategoriNamn, new List<Pod>());
+                KategoriRepository.LaggTillKategori(kategoriNamn);
+                tbLaggTillKategori.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Fältet kan inte vara tomt!");
             }
         }
     }
