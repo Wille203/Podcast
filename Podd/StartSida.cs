@@ -1,4 +1,5 @@
 using BLL.Controller;
+using System.Diagnostics;
 
 namespace Podd
 {
@@ -38,6 +39,14 @@ namespace Podd
             this.Hide();
             HanteraKategorier hanteraKategorier = new HanteraKategorier();
             hanteraKategorier.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://poddtoppen.se/", UseShellExecute = true 
+            });
         }
     }
 }

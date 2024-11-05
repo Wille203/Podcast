@@ -28,68 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            comboBox1 = new ComboBox();
-            textBox1 = new TextBox();
-            richTextBox1 = new RichTextBox();
+            components = new System.ComponentModel.Container();
             rubrik = new Label();
             process1 = new System.Diagnostics.Process();
-            splitContainer1 = new SplitContainer();
             menuStrip1 = new MenuStrip();
             startsidanToolStripMenuItem = new ToolStripMenuItem();
             minaPoddarToolStripMenuItem = new ToolStripMenuItem();
             läggTillPoddToolStripMenuItem = new ToolStripMenuItem();
             hanteraKategoriToolStripMenuItem = new ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.SuspendLayout();
+            errorProvider1 = new ErrorProvider(components);
+            errorProvider2 = new ErrorProvider(components);
+            linkLabel1 = new LinkLabel();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider2).BeginInit();
             SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.Location = new Point(112, 127);
-            button1.Margin = new Padding(2);
-            button1.Name = "button1";
-            button1.Size = new Size(78, 20);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(496, 96);
-            comboBox1.Margin = new Padding(2);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(129, 23);
-            comboBox1.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(54, 96);
-            textBox1.Margin = new Padding(2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(220, 23);
-            textBox1.TabIndex = 2;
-            // 
-            // richTextBox1
-            // 
-            richTextBox1.Location = new Point(97, 158);
-            richTextBox1.Margin = new Padding(2);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(106, 88);
-            richTextBox1.TabIndex = 3;
-            richTextBox1.Text = "";
             // 
             // rubrik
             // 
-            rubrik.AutoSize = true;
-            rubrik.Location = new Point(327, 28);
+            rubrik.Font = new Font("Segoe UI", 50F, FontStyle.Bold);
+            rubrik.Location = new Point(204, 118);
             rubrik.Margin = new Padding(2, 0, 2, 0);
             rubrik.Name = "rubrik";
-            rubrik.Size = new Size(72, 15);
+            rubrik.Size = new Size(444, 156);
             rubrik.TabIndex = 4;
             rubrik.Text = "Poddspelare";
+            rubrik.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // process1
             // 
@@ -103,22 +67,12 @@
             process1.StartInfo.UserName = "";
             process1.SynchronizingObject = this;
             // 
-            // splitContainer1
-            // 
-            splitContainer1.Location = new Point(326, 158);
-            splitContainer1.Margin = new Padding(2);
-            splitContainer1.Name = "splitContainer1";
-            splitContainer1.Size = new Size(356, 157);
-            splitContainer1.SplitterDistance = 118;
-            splitContainer1.SplitterWidth = 3;
-            splitContainer1.TabIndex = 5;
-            // 
             // menuStrip1
             // 
             menuStrip1.Items.AddRange(new ToolStripItem[] { startsidanToolStripMenuItem, minaPoddarToolStripMenuItem, läggTillPoddToolStripMenuItem, hanteraKategoriToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(869, 24);
+            menuStrip1.Size = new Size(882, 24);
             menuStrip1.TabIndex = 9;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -150,42 +104,59 @@
             hanteraKategoriToolStripMenuItem.Text = "Hantera kategori";
             hanteraKategoriToolStripMenuItem.Click += hanteraKategoriToolStripMenuItem_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            errorProvider2.ContainerControl = this;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.Font = new Font("Segoe UI", 15F);
+            linkLabel1.LinkArea = new LinkArea(0, 10);
+            linkLabel1.Location = new Point(265, 264);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(317, 51);
+            linkLabel1.TabIndex = 10;
+            linkLabel1.TabStop = true;
+            linkLabel1.Tag = "";
+            linkLabel1.Text = "PoddToppen";
+            linkLabel1.TextAlign = ContentAlignment.MiddleCenter;
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // StartSida
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(869, 399);
+            ClientSize = new Size(882, 567);
+            Controls.Add(linkLabel1);
             Controls.Add(menuStrip1);
-            Controls.Add(splitContainer1);
             Controls.Add(rubrik);
-            Controls.Add(richTextBox1);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox1);
-            Controls.Add(button1);
+            Font = new Font("Segoe UI", 9F);
             Margin = new Padding(2);
             Name = "StartSida";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button button1;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
-        private RichTextBox richTextBox1;
         private Label rubrik;
         private System.Diagnostics.Process process1;
-        private SplitContainer splitContainer1;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem startsidanToolStripMenuItem;
         private ToolStripMenuItem minaPoddarToolStripMenuItem;
         private ToolStripMenuItem läggTillPoddToolStripMenuItem;
         private ToolStripMenuItem hanteraKategoriToolStripMenuItem;
+        private ErrorProvider errorProvider1;
+        private ErrorProvider errorProvider2;
+        private LinkLabel linkLabel1;
     }
 }

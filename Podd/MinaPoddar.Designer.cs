@@ -62,79 +62,88 @@ namespace Podd
             // lblMinaPoddar
             // 
             lblMinaPoddar.AutoSize = true;
-            lblMinaPoddar.Location = new Point(451, 40);
+            lblMinaPoddar.Location = new Point(338, 24);
+            lblMinaPoddar.Margin = new Padding(2, 0, 2, 0);
             lblMinaPoddar.Name = "lblMinaPoddar";
-            lblMinaPoddar.Size = new Size(113, 25);
+            lblMinaPoddar.Size = new Size(75, 15);
             lblMinaPoddar.TabIndex = 0;
             lblMinaPoddar.Text = "Mina Poddar";
             // 
             // lblSparadePoddar
             // 
             lblSparadePoddar.AutoSize = true;
-            lblSparadePoddar.Location = new Point(164, 63);
+            lblSparadePoddar.Location = new Point(115, 38);
+            lblSparadePoddar.Margin = new Padding(2, 0, 2, 0);
             lblSparadePoddar.Name = "lblSparadePoddar";
-            lblSparadePoddar.Size = new Size(141, 25);
+            lblSparadePoddar.Size = new Size(90, 15);
             lblSparadePoddar.TabIndex = 2;
             lblSparadePoddar.Text = "Sparade poddar";
             // 
             // lblAvsnitt
             // 
             lblAvsnitt.AutoSize = true;
-            lblAvsnitt.Location = new Point(569, 67);
+            lblAvsnitt.Location = new Point(435, 40);
+            lblAvsnitt.Margin = new Padding(2, 0, 2, 0);
             lblAvsnitt.Name = "lblAvsnitt";
-            lblAvsnitt.Size = new Size(67, 25);
+            lblAvsnitt.Size = new Size(44, 15);
             lblAvsnitt.TabIndex = 4;
             lblAvsnitt.Text = "Avsnitt";
             // 
             // lblBeskrivning
             // 
             lblBeskrivning.AutoSize = true;
-            lblBeskrivning.Location = new Point(754, 67);
+            lblBeskrivning.Location = new Point(592, 38);
+            lblBeskrivning.Margin = new Padding(2, 0, 2, 0);
             lblBeskrivning.Name = "lblBeskrivning";
-            lblBeskrivning.Size = new Size(102, 25);
+            lblBeskrivning.Size = new Size(68, 15);
             lblBeskrivning.TabIndex = 6;
             lblBeskrivning.Text = "Beskrivning";
             // 
             // cbValKategori
             // 
             cbValKategori.FormattingEnabled = true;
-            cbValKategori.Location = new Point(221, 92);
+            cbValKategori.Location = new Point(155, 55);
+            cbValKategori.Margin = new Padding(2, 2, 2, 2);
             cbValKategori.Name = "cbValKategori";
-            cbValKategori.Size = new Size(183, 33);
+            cbValKategori.Size = new Size(129, 23);
             cbValKategori.TabIndex = 7;
             cbValKategori.SelectedIndexChanged += cbValKategori_SelectedIndexChanged;
             // 
             // lblValKategori
             // 
             lblValKategori.AutoSize = true;
-            lblValKategori.Location = new Point(101, 93);
+            lblValKategori.Location = new Point(71, 56);
+            lblValKategori.Margin = new Padding(2, 0, 2, 0);
             lblValKategori.Name = "lblValKategori";
-            lblValKategori.Size = new Size(113, 25);
+            lblValKategori.Size = new Size(74, 15);
             lblValKategori.TabIndex = 8;
             lblValKategori.Text = "Välj kategori:";
             // 
             // lblAndraKategori
             // 
             lblAndraKategori.AutoSize = true;
-            lblAndraKategori.Location = new Point(90, 377);
+            lblAndraKategori.Location = new Point(63, 226);
+            lblAndraKategori.Margin = new Padding(2, 0, 2, 0);
             lblAndraKategori.Name = "lblAndraKategori";
-            lblAndraKategori.Size = new Size(135, 25);
+            lblAndraKategori.Size = new Size(89, 15);
             lblAndraKategori.TabIndex = 9;
             lblAndraKategori.Text = "Ändra Kategori:";
             // 
             // cbAndraKategori
             // 
             cbAndraKategori.FormattingEnabled = true;
-            cbAndraKategori.Location = new Point(231, 374);
+            cbAndraKategori.Location = new Point(162, 224);
+            cbAndraKategori.Margin = new Padding(2, 2, 2, 2);
             cbAndraKategori.Name = "cbAndraKategori";
-            cbAndraKategori.Size = new Size(183, 33);
+            cbAndraKategori.Size = new Size(129, 23);
             cbAndraKategori.TabIndex = 10;
             // 
             // btnSparaKategori
             // 
-            btnSparaKategori.Location = new Point(133, 414);
+            btnSparaKategori.Location = new Point(93, 248);
+            btnSparaKategori.Margin = new Padding(2, 2, 2, 2);
             btnSparaKategori.Name = "btnSparaKategori";
-            btnSparaKategori.Size = new Size(211, 33);
+            btnSparaKategori.Size = new Size(148, 20);
             btnSparaKategori.TabIndex = 11;
             btnSparaKategori.Text = "Spara Ändring";
             btnSparaKategori.UseVisualStyleBackColor = true;
@@ -143,25 +152,28 @@ namespace Podd
             // lblTaBortPodd
             // 
             lblTaBortPodd.AutoSize = true;
-            lblTaBortPodd.Location = new Point(74, 672);
+            lblTaBortPodd.Location = new Point(52, 403);
+            lblTaBortPodd.Margin = new Padding(2, 0, 2, 0);
             lblTaBortPodd.Name = "lblTaBortPodd";
-            lblTaBortPodd.Size = new Size(140, 25);
+            lblTaBortPodd.Size = new Size(91, 15);
             lblTaBortPodd.TabIndex = 12;
             lblTaBortPodd.Text = "Ta bort podcast:";
             // 
             // cbTaBortPodd
             // 
             cbTaBortPodd.FormattingEnabled = true;
-            cbTaBortPodd.Location = new Point(221, 668);
+            cbTaBortPodd.Location = new Point(155, 401);
+            cbTaBortPodd.Margin = new Padding(2, 2, 2, 2);
             cbTaBortPodd.Name = "cbTaBortPodd";
-            cbTaBortPodd.Size = new Size(183, 33);
+            cbTaBortPodd.Size = new Size(129, 23);
             cbTaBortPodd.TabIndex = 13;
             // 
             // btnTaBort
             // 
-            btnTaBort.Location = new Point(137, 708);
+            btnTaBort.Location = new Point(96, 425);
+            btnTaBort.Margin = new Padding(2, 2, 2, 2);
             btnTaBort.Name = "btnTaBort";
-            btnTaBort.Size = new Size(221, 33);
+            btnTaBort.Size = new Size(155, 20);
             btnTaBort.TabIndex = 14;
             btnTaBort.Text = "Ta bort";
             btnTaBort.UseVisualStyleBackColor = true;
@@ -173,73 +185,70 @@ namespace Podd
             menuStrip1.Items.AddRange(new ToolStripItem[] { startsidanToolStripMenuItem, minaPoddarToolStripMenuItem, läggTillPoddToolStripMenuItem, hanteraKategoriToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(9, 3, 0, 3);
-            menuStrip1.Size = new Size(1260, 35);
+            menuStrip1.Size = new Size(882, 24);
             menuStrip1.TabIndex = 15;
             menuStrip1.Text = "menuStrip1";
             // 
             // startsidanToolStripMenuItem
             // 
             startsidanToolStripMenuItem.Name = "startsidanToolStripMenuItem";
-            startsidanToolStripMenuItem.Size = new Size(106, 29);
+            startsidanToolStripMenuItem.Size = new Size(71, 20);
             startsidanToolStripMenuItem.Text = "Startsidan";
             startsidanToolStripMenuItem.Click += startsidanToolStripMenuItem_Click;
             // 
             // minaPoddarToolStripMenuItem
             // 
             minaPoddarToolStripMenuItem.Name = "minaPoddarToolStripMenuItem";
-            minaPoddarToolStripMenuItem.Size = new Size(131, 29);
+            minaPoddarToolStripMenuItem.Size = new Size(87, 20);
             minaPoddarToolStripMenuItem.Text = "Mina poddar";
             minaPoddarToolStripMenuItem.Click += minaPoddarToolStripMenuItem_Click;
             // 
             // läggTillPoddToolStripMenuItem
             // 
             läggTillPoddToolStripMenuItem.Name = "läggTillPoddToolStripMenuItem";
-            läggTillPoddToolStripMenuItem.Size = new Size(139, 29);
+            läggTillPoddToolStripMenuItem.Size = new Size(92, 20);
             läggTillPoddToolStripMenuItem.Text = "Lägg till podd";
             läggTillPoddToolStripMenuItem.Click += läggTillPoddToolStripMenuItem_Click;
             // 
             // hanteraKategoriToolStripMenuItem
             // 
             hanteraKategoriToolStripMenuItem.Name = "hanteraKategoriToolStripMenuItem";
-            hanteraKategoriToolStripMenuItem.Size = new Size(160, 29);
+            hanteraKategoriToolStripMenuItem.Size = new Size(107, 20);
             hanteraKategoriToolStripMenuItem.Text = "Hantera kategori";
             hanteraKategoriToolStripMenuItem.Click += hanteraKategoriToolStripMenuItem_Click;
             // 
             // tbMinaPoddar
             // 
-            tbMinaPoddar.Location = new Point(101, 138);
-            tbMinaPoddar.Margin = new Padding(4, 5, 4, 5);
+            tbMinaPoddar.Location = new Point(71, 83);
             tbMinaPoddar.Multiline = true;
             tbMinaPoddar.Name = "tbMinaPoddar";
-            tbMinaPoddar.Size = new Size(303, 171);
+            tbMinaPoddar.Size = new Size(213, 104);
             tbMinaPoddar.TabIndex = 16;
             tbMinaPoddar.MouseClick += tbMinaPoddar_MouseClick;
             // 
             // rtbBeskrivning
             // 
-            rtbBeskrivning.Location = new Point(754, 97);
-            rtbBeskrivning.Margin = new Padding(4, 5, 4, 5);
+            rtbBeskrivning.Location = new Point(592, 58);
             rtbBeskrivning.Name = "rtbBeskrivning";
-            rtbBeskrivning.Size = new Size(228, 212);
+            rtbBeskrivning.Size = new Size(230, 210);
             rtbBeskrivning.TabIndex = 18;
             rtbBeskrivning.Text = "";
             // 
             // rtbAvsnitt
             // 
-            rtbAvsnitt.Location = new Point(477, 97);
-            rtbAvsnitt.Margin = new Padding(4, 5, 4, 5);
+            rtbAvsnitt.Location = new Point(338, 58);
             rtbAvsnitt.Name = "rtbAvsnitt";
-            rtbAvsnitt.Size = new Size(267, 524);
+            rtbAvsnitt.Size = new Size(238, 387);
             rtbAvsnitt.TabIndex = 19;
             rtbAvsnitt.Text = "";
             rtbAvsnitt.MouseClick += rtbAvsnitt_MouseClick;
             // 
             // btnAndraNamn
             // 
-            btnAndraNamn.Location = new Point(123, 584);
+            btnAndraNamn.Location = new Point(86, 350);
+            btnAndraNamn.Margin = new Padding(2, 2, 2, 2);
             btnAndraNamn.Name = "btnAndraNamn";
-            btnAndraNamn.Size = new Size(221, 33);
+            btnAndraNamn.Size = new Size(155, 20);
             btnAndraNamn.TabIndex = 22;
             btnAndraNamn.Text = "Ändra Namn";
             btnAndraNamn.UseVisualStyleBackColor = true;
@@ -248,19 +257,19 @@ namespace Podd
             // lblAndraNamn
             // 
             lblAndraNamn.AutoSize = true;
-            lblAndraNamn.Location = new Point(91, 542);
+            lblAndraNamn.Location = new Point(64, 325);
+            lblAndraNamn.Margin = new Padding(2, 0, 2, 0);
             lblAndraNamn.Name = "lblAndraNamn";
-            lblAndraNamn.Size = new Size(119, 25);
+            lblAndraNamn.Size = new Size(79, 15);
             lblAndraNamn.TabIndex = 20;
             lblAndraNamn.Text = "Ändra namn :";
             lblAndraNamn.TextAlign = ContentAlignment.MiddleRight;
             // 
             // tbAndraNamn
             // 
-            tbAndraNamn.Location = new Point(221, 537);
-            tbAndraNamn.Margin = new Padding(4, 5, 4, 5);
+            tbAndraNamn.Location = new Point(155, 322);
             tbAndraNamn.Name = "tbAndraNamn";
-            tbAndraNamn.Size = new Size(183, 31);
+            tbAndraNamn.Size = new Size(129, 23);
             tbAndraNamn.TabIndex = 23;
             // 
             // contextMenuStrip1
@@ -272,25 +281,27 @@ namespace Podd
             // cbAndraNamn
             // 
             cbAndraNamn.FormattingEnabled = true;
-            cbAndraNamn.Location = new Point(123, 496);
+            cbAndraNamn.Location = new Point(86, 298);
+            cbAndraNamn.Margin = new Padding(2, 2, 2, 2);
             cbAndraNamn.Name = "cbAndraNamn";
-            cbAndraNamn.Size = new Size(221, 33);
+            cbAndraNamn.Size = new Size(156, 23);
             cbAndraNamn.TabIndex = 24;
             cbAndraNamn.SelectedIndexChanged += cbAndraNamn_SelectedIndexChanged;
             // 
             // cbAndraPoddKategori
             // 
             cbAndraPoddKategori.FormattingEnabled = true;
-            cbAndraPoddKategori.Location = new Point(150, 335);
+            cbAndraPoddKategori.Location = new Point(105, 201);
+            cbAndraPoddKategori.Margin = new Padding(2, 2, 2, 2);
             cbAndraPoddKategori.Name = "cbAndraPoddKategori";
-            cbAndraPoddKategori.Size = new Size(182, 33);
+            cbAndraPoddKategori.Size = new Size(129, 23);
             cbAndraPoddKategori.TabIndex = 25;
             // 
             // MinaPoddar
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1260, 945);
+            ClientSize = new Size(882, 567);
             Controls.Add(cbAndraPoddKategori);
             Controls.Add(cbAndraNamn);
             Controls.Add(tbAndraNamn);
@@ -312,7 +323,9 @@ namespace Podd
             Controls.Add(lblAvsnitt);
             Controls.Add(lblSparadePoddar);
             Controls.Add(lblMinaPoddar);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "MinaPoddar";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form3";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

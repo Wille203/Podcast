@@ -49,7 +49,7 @@
             // cbKategori
             // 
             cbKategori.FormattingEnabled = true;
-            cbKategori.Location = new Point(24, 90);
+            cbKategori.Location = new Point(190, 119);
             cbKategori.Name = "cbKategori";
             cbKategori.Size = new Size(121, 23);
             cbKategori.TabIndex = 0;
@@ -57,7 +57,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(61, 72);
+            label1.Location = new Point(227, 101);
             label1.Name = "label1";
             label1.Size = new Size(51, 15);
             label1.TabIndex = 1;
@@ -65,16 +65,17 @@
             // 
             // btnTaBort
             // 
-            btnTaBort.Location = new Point(24, 119);
+            btnTaBort.Location = new Point(190, 148);
             btnTaBort.Name = "btnTaBort";
             btnTaBort.Size = new Size(75, 23);
             btnTaBort.TabIndex = 2;
             btnTaBort.Text = "Ta bort";
             btnTaBort.UseVisualStyleBackColor = true;
+            btnTaBort.Click += btnTaBort_Click;
             // 
             // tbLaggTillKategori
             // 
-            tbLaggTillKategori.Location = new Point(24, 311);
+            tbLaggTillKategori.Location = new Point(190, 272);
             tbLaggTillKategori.Name = "tbLaggTillKategori";
             tbLaggTillKategori.Size = new Size(131, 23);
             tbLaggTillKategori.TabIndex = 3;
@@ -82,7 +83,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(40, 293);
+            label2.Location = new Point(206, 254);
             label2.Name = "label2";
             label2.Size = new Size(95, 15);
             label2.TabIndex = 4;
@@ -90,7 +91,7 @@
             // 
             // tbBytNamn
             // 
-            tbBytNamn.Location = new Point(523, 91);
+            tbBytNamn.Location = new Point(616, 119);
             tbBytNamn.Name = "tbBytNamn";
             tbBytNamn.Size = new Size(131, 23);
             tbBytNamn.TabIndex = 6;
@@ -98,7 +99,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(486, 72);
+            label3.Location = new Point(579, 100);
             label3.Name = "label3";
             label3.Size = new Size(58, 15);
             label3.TabIndex = 7;
@@ -110,7 +111,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { startsidanToolStripMenuItem, minaPoddarToolStripMenuItem, läggTillPoddToolStripMenuItem, hanteraKategoriToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(882, 24);
             menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -144,7 +145,7 @@
             // 
             // btnSparaKategori
             // 
-            btnSparaKategori.Location = new Point(24, 340);
+            btnSparaKategori.Location = new Point(190, 301);
             btnSparaKategori.Name = "btnSparaKategori";
             btnSparaKategori.Size = new Size(75, 23);
             btnSparaKategori.TabIndex = 5;
@@ -154,7 +155,7 @@
             // 
             // btnSparaNamn
             // 
-            btnSparaNamn.Location = new Point(486, 116);
+            btnSparaNamn.Location = new Point(579, 144);
             btnSparaNamn.Name = "btnSparaNamn";
             btnSparaNamn.Size = new Size(75, 23);
             btnSparaNamn.TabIndex = 9;
@@ -165,8 +166,8 @@
             // cbBytNamnKategori
             // 
             cbBytNamnKategori.FormattingEnabled = true;
-            cbBytNamnKategori.Location = new Point(370, 91);
-            cbBytNamnKategori.Margin = new Padding(2, 2, 2, 2);
+            cbBytNamnKategori.Location = new Point(463, 119);
+            cbBytNamnKategori.Margin = new Padding(2);
             cbBytNamnKategori.Name = "cbBytNamnKategori";
             cbBytNamnKategori.Size = new Size(129, 23);
             cbBytNamnKategori.TabIndex = 10;
@@ -175,7 +176,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(882, 567);
             Controls.Add(cbBytNamnKategori);
             Controls.Add(btnSparaNamn);
             Controls.Add(label3);
@@ -189,6 +190,7 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "HanteraKategorier";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form4";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
