@@ -52,12 +52,20 @@ namespace BLL.Controller
                 {
                     Avsnitt avsnitt = new Avsnitt
                     {
-                        Titel = item.Title.Text,
-                        Beskrivning = item.Summary.Text,
+                        Titel = item.Title?.Text ?? "Okänd titel",
                     };
+
+                    if (!string.IsNullOrEmpty(item.Summary?.Text))
+                    {
+                       avsnitt.Beskrivning = item.Summary.Text;
+                    }
+                    else
+                    {
+                        avsnitt.Beskrivning = item.ElementExtensions.ReadElementExtensions<string>("description", "").FirstOrDefault() ?? "Ingen beskrivning tillgänglig";
+                    }
                     pod.Avsnitt.Add(avsnitt);
                 }
-                podRepository.Create(pod);
+                //podRepository.Create(pod);
                 newPod = pod; 
             }
             catch (Exception ex)
@@ -130,17 +138,18 @@ namespace BLL.Controller
 
             Pod nyPod = new Pod {PodUrl = rssLank, PodTitel = name};
 
-            bool poddFinnsIRepository = podRepository.GetAll().Any(p => p.PodTitel.Equals(nyPod.PodTitel, StringComparison.OrdinalIgnoreCase));
+            //bool poddFinnsIRepository = podRepository.GetAll().Any(p => p.PodTitel.Equals(nyPod.PodTitel, StringComparison.OrdinalIgnoreCase));
             bool poddFinnsIKategori = kategori.Pod.Any(p => p.PodTitel.Equals(nyPod.PodTitel, StringComparison.OrdinalIgnoreCase));
 
-            if (!poddFinnsIRepository)
-            {
-                podRepository.Create(nyPod);
-            }
+            //if (!poddFinnsIRepository)
+            //{
+                //podRepository.Create(nyPod);
+            //}
             if (!poddFinnsIKategori)
             {
                 kategori.Pod.Add(nyPod);
                 kategoriController.UpdateraKategori(kategori);
+                podRepository.Create(nyPod);
             }
         }
 
