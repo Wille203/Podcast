@@ -38,17 +38,20 @@ namespace DAL.Repository
 
         public List<Pod> GetAll()
         {
-            List<Pod>deserializedPodList = new List<Pod>();
             try
             {
+<<<<<<< Updated upstream
                 deserializedPodList = poddSerializer.Deserialize(className);
                 poddLista = deserializedPodList;
+=======
+                poddLista = poddSerializer.Deserialize(className);
+>>>>>>> Stashed changes
             }
             catch (Exception)
             {
-                
+                poddLista = new List<Pod>();
             }
-            return deserializedPodList;
+            return poddLista;
         }
 
         public Pod GetByName(string name)
