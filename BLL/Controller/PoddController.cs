@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using DAL.Repository;
 using System.Diagnostics;
-using System.Globalization;
 
 namespace BLL.Controller
 {
@@ -51,35 +50,15 @@ namespace BLL.Controller
 
                 foreach (SyndicationItem item in poddFlode.Items)
                 {
-                    string nyTitel = "";
-                    string nyBeskr = "";
-                    nyTitel = item.Title.Text;
-
-                    if (item.Summary != null)
-                    {
-                        try
-                        {
-                            nyBeskr = item.Summary.Text;
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine(ex.Message);
-                        }
-                    }
-                    else
-                    {
-                        nyBeskr = "Kunde inte hämta";
-                    }
-
                     Avsnitt avsnitt = new Avsnitt
                     {
-                        Titel = nyTitel,
-                        Beskrivning = nyBeskr,
+                        Titel = item.Title.Text,
+                        Beskrivning = item.Summary.Text,
                     };
                     pod.Avsnitt.Add(avsnitt);
                 }
                 podRepository.Create(pod);
-                newPod = pod;
+                newPod = pod; 
             }
             catch (Exception ex)
             {
