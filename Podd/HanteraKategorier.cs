@@ -144,21 +144,5 @@ namespace Podd
                 hanteraKategorier.Show();
             }
         }
-
-        private void btnSparaKategori_Click(object sender, EventArgs e)
-        {
-            string kategoriNamn = tbLaggTillKategori.Text;
-
-            if (!string.IsNullOrEmpty(kategoriNamn))
-            {
-                kategoriController.LaggTillKategori(kategoriNamn, new List<Pod>());
-                KategoriRepository.LaggTillKategori(kategoriNamn);
-                tbLaggTillKategori.Clear();
-            }
-            else
-            {
-                MessageBox.Show("Fältet kan inte vara tomt!");
-            }
-        }
     }
 }
