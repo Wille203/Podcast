@@ -1,4 +1,5 @@
-﻿using BLL.Controller;
+﻿using BLL;
+using BLL.Controller;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,21 +16,29 @@ namespace Podd
     {
         PoddController poddController;
         KategoriController kategoriController;
+        Validering validering;
         public LaggTillPodd2()
         {
             InitializeComponent();
             tbPoddNamn.ReadOnly = true;
             kategoriController = new KategoriController();
-            
+            validering = new Validering();
             poddController = new PoddController();
             Fyllcb();
         }
 
-        private void btnSparaPodd_Click(object sender, EventArgs e)
+        private async void btnSparaPodd_Click(object sender, EventArgs e)
         {
             string podName = string.IsNullOrEmpty(tbNamn.Text) ? tbPoddNamn.Text : tbNamn.Text;
             string kategori = cbValKategori.SelectedItem?.ToString() ?? "";
 
+            if (validering.CheckIfNameExist(podName))
+            {
+                MessageBox.Show("Namnet du angett på podden finns redan!", "", MessageBoxButtons.OK);
+                return;
+
+            }
+            await Task.Delay(1000);
             poddController.SavePod(tbLank.Text, podName, kategori);
 
             tbLank.Text = string.Empty;
@@ -54,11 +63,20 @@ namespace Podd
 
         }
 
-        private void btnHamtaPodd1_Click(object sender, EventArgs e)
+        private async void btnHamtaPodd1_Click(object sender, EventArgs e)
         {
-            poddController.HamtaPoddFranRss(tbLank.Text);
+            string hamtaPoddNamn = tbNamn.Text;
+            string hamtaUrl = tbLank.Text;
+            if(validering.CheckIfUrlExist(hamtaUrl))
+            {
+                MessageBox.Show("Vänligen fyll i en url!", "", MessageBoxButtons.OK);
+                return;
+            }
+            
+            await Task.Delay(1000);
+            poddController.HamtaPoddFranRss(hamtaUrl);
             tbPoddNamn.Text = poddController.GetPodName();
-            tbNamn.Text = poddController.GetPodName();
+            hamtaPoddNamn = poddController.GetPodName();
         }
 
         private void startsidanToolStripMenuItem_Click(object sender, EventArgs e)
