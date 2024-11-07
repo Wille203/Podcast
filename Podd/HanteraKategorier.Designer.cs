@@ -48,6 +48,7 @@
             // 
             // cbKategori
             // 
+            cbKategori.DropDownStyle = ComboBoxStyle.DropDownList;
             cbKategori.FormattingEnabled = true;
             cbKategori.Location = new Point(190, 119);
             cbKategori.Name = "cbKategori";
@@ -165,6 +166,7 @@
             // 
             // cbBytNamnKategori
             // 
+            cbBytNamnKategori.DropDownStyle = ComboBoxStyle.DropDownList;
             cbBytNamnKategori.FormattingEnabled = true;
             cbBytNamnKategori.Location = new Point(463, 119);
             cbBytNamnKategori.Margin = new Padding(2);

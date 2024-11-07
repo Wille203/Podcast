@@ -27,6 +27,11 @@ namespace Podd
 
         private void btnSparaPodd_Click(object sender, EventArgs e)
         {
+            if (cbValKategori.SelectedItem == null) 
+            {
+                MessageBox.Show(this, "Vänligen välj en kategori");
+                return;
+            }
             string podName = string.IsNullOrEmpty(tbNamn.Text) ? tbPoddNamn.Text : tbNamn.Text;
             string kategori = cbValKategori.SelectedItem?.ToString() ?? "";
 
