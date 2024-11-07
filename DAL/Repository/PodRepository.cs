@@ -22,7 +22,6 @@ namespace DAL.Repository
 
         public void Create(Pod pod)
         {
-            GetAll();
             if(!poddLista.Any(p => p.PodTitel.Equals(pod.PodTitel, StringComparison.OrdinalIgnoreCase)))
             {
                 poddLista.Add(pod);
@@ -42,7 +41,6 @@ namespace DAL.Repository
             try
             {
                 deserializedPodList = poddSerializer.Deserialize(className);
-                poddLista = deserializedPodList;
             }
             catch (Exception)
             {
