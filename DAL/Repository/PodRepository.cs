@@ -39,12 +39,8 @@ namespace DAL.Repository
         {
             try
             {
-<<<<<<< Updated upstream
-                deserializedPodList = poddSerializer.Deserialize(className);
-                poddLista = deserializedPodList;
-=======
                 poddLista = poddSerializer.Deserialize(className);
->>>>>>> Stashed changes
+
             }
             catch (Exception)
             {
