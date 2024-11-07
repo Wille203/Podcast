@@ -1,9 +1,12 @@
 ﻿using DAL.Repository;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace BLL
 {
@@ -55,6 +58,24 @@ namespace BLL
                             where aPod.PodUrl.Equals(url)
                             select aPod.PodUrl;
             return selectUrl.Any();
+        }
+
+        public bool TryParseFeed(string url)
+        {
+            try
+            {
+                SyndicationFeed syndicationFeed = SyndicationFeed.Load(XmlReader.Create(url));
+
+                foreach (SyndicationItem item in syndicationFeed.Items)
+                {
+                    Debug.Print(item.Title.Text);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
     }

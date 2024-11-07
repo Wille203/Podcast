@@ -38,7 +38,7 @@ namespace Podd
                 return;
 
             }
-            await Task.Delay(1000);
+            await Task.Delay(100);
             poddController.SavePod(tbLank.Text, podName, kategori);
 
             tbLank.Text = string.Empty;
@@ -65,18 +65,23 @@ namespace Podd
 
         private async void btnHamtaPodd1_Click(object sender, EventArgs e)
         {
-            string hamtaPoddNamn = tbNamn.Text;
             string hamtaUrl = tbLank.Text;
             if(validering.CheckIfUrlExist(hamtaUrl))
             {
-                MessageBox.Show("Vänligen fyll i en url!", "", MessageBoxButtons.OK);
+                MessageBox.Show("Denna url finns redan sparad!", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (!validering.TryParseFeed(hamtaUrl))
+            {
+                MessageBox.Show("Ogiltigt URL format!", "", MessageBoxButtons.OK);
                 return;
             }
             
-            await Task.Delay(1000);
+            await Task.Delay(100);
             poddController.HamtaPoddFranRss(hamtaUrl);
             tbPoddNamn.Text = poddController.GetPodName();
-            hamtaPoddNamn = poddController.GetPodName();
+            tbNamn.Text = poddController.GetPodName();
         }
 
         private void startsidanToolStripMenuItem_Click(object sender, EventArgs e)
