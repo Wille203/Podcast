@@ -15,7 +15,7 @@ namespace BLL
         KategoriRepository kategoriRepository;
         PodRepository podRepository;
 
-        public Validering() 
+        public Validering()
         {
             kategoriRepository = new KategoriRepository();
             podRepository = new PodRepository();
@@ -59,7 +59,6 @@ namespace BLL
                             select aPod.PodUrl;
             return selectUrl.Any();
         }
-
         public bool TryParseFeed(string url)
         {
             try

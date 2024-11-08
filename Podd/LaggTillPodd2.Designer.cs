@@ -59,7 +59,7 @@
             // tbPoddNamn
             // 
             tbPoddNamn.Location = new Point(386, 61);
-            tbPoddNamn.Margin = new Padding(2, 2, 2, 2);
+            tbPoddNamn.Margin = new Padding(2);
             tbPoddNamn.Name = "tbPoddNamn";
             tbPoddNamn.Size = new Size(205, 23);
             tbPoddNamn.TabIndex = 27;
@@ -96,9 +96,10 @@
             // 
             // cbValKategori
             // 
+            cbValKategori.DropDownStyle = ComboBoxStyle.DropDownList;
             cbValKategori.FormattingEnabled = true;
             cbValKategori.Location = new Point(78, 203);
-            cbValKategori.Margin = new Padding(2, 2, 2, 2);
+            cbValKategori.Margin = new Padding(2);
             cbValKategori.Name = "cbValKategori";
             cbValKategori.Size = new Size(177, 23);
             cbValKategori.TabIndex = 23;
@@ -107,7 +108,7 @@
             // tbNamn
             // 
             tbNamn.Location = new Point(78, 144);
-            tbNamn.Margin = new Padding(2, 2, 2, 2);
+            tbNamn.Margin = new Padding(2);
             tbNamn.Name = "tbNamn";
             tbNamn.Size = new Size(177, 23);
             tbNamn.TabIndex = 22;
@@ -115,7 +116,7 @@
             // btnSparaPodd
             // 
             btnSparaPodd.Location = new Point(274, 275);
-            btnSparaPodd.Margin = new Padding(2, 2, 2, 2);
+            btnSparaPodd.Margin = new Padding(2);
             btnSparaPodd.Name = "btnSparaPodd";
             btnSparaPodd.Size = new Size(164, 23);
             btnSparaPodd.TabIndex = 21;
@@ -126,7 +127,7 @@
             // tbLank
             // 
             tbLank.Location = new Point(78, 61);
-            tbLank.Margin = new Padding(2, 2, 2, 2);
+            tbLank.Margin = new Padding(2);
             tbLank.Name = "tbLank";
             tbLank.Size = new Size(177, 23);
             tbLank.TabIndex = 20;
@@ -171,7 +172,7 @@
             // btnHamtaPodd1
             // 
             btnHamtaPodd1.Location = new Point(99, 83);
-            btnHamtaPodd1.Margin = new Padding(2, 2, 2, 2);
+            btnHamtaPodd1.Margin = new Padding(2);
             btnHamtaPodd1.Name = "btnHamtaPodd1";
             btnHamtaPodd1.Size = new Size(125, 20);
             btnHamtaPodd1.TabIndex = 29;
@@ -195,7 +196,7 @@
             Controls.Add(btnSparaPodd);
             Controls.Add(tbLank);
             Controls.Add(menuStrip1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "LaggTillPodd2";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LaggTillPodd2";

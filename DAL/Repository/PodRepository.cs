@@ -37,16 +37,16 @@ namespace DAL.Repository
 
         public List<Pod> GetAll()
         {
-            List<Pod>deserializedPodList = new List<Pod>();
             try
             {
-                deserializedPodList = poddSerializer.Deserialize(className);
+                poddLista = poddSerializer.Deserialize(className);
+
             }
             catch (Exception)
             {
-                
+                poddLista = new List<Pod>();
             }
-            return deserializedPodList;
+            return poddLista;
         }
 
         public Pod GetByName(string name)

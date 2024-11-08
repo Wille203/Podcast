@@ -101,9 +101,10 @@ namespace Podd
             // 
             // cbValKategori
             // 
+            cbValKategori.DropDownStyle = ComboBoxStyle.DropDownList;
             cbValKategori.FormattingEnabled = true;
             cbValKategori.Location = new Point(155, 55);
-            cbValKategori.Margin = new Padding(2, 2, 2, 2);
+            cbValKategori.Margin = new Padding(2);
             cbValKategori.Name = "cbValKategori";
             cbValKategori.Size = new Size(129, 23);
             cbValKategori.TabIndex = 7;
@@ -133,7 +134,7 @@ namespace Podd
             // 
             cbAndraKategori.FormattingEnabled = true;
             cbAndraKategori.Location = new Point(162, 224);
-            cbAndraKategori.Margin = new Padding(2, 2, 2, 2);
+            cbAndraKategori.Margin = new Padding(2);
             cbAndraKategori.Name = "cbAndraKategori";
             cbAndraKategori.Size = new Size(129, 23);
             cbAndraKategori.TabIndex = 10;
@@ -141,7 +142,7 @@ namespace Podd
             // btnSparaKategori
             // 
             btnSparaKategori.Location = new Point(93, 248);
-            btnSparaKategori.Margin = new Padding(2, 2, 2, 2);
+            btnSparaKategori.Margin = new Padding(2);
             btnSparaKategori.Name = "btnSparaKategori";
             btnSparaKategori.Size = new Size(148, 20);
             btnSparaKategori.TabIndex = 11;
@@ -161,9 +162,10 @@ namespace Podd
             // 
             // cbTaBortPodd
             // 
+            cbTaBortPodd.DropDownStyle = ComboBoxStyle.DropDownList;
             cbTaBortPodd.FormattingEnabled = true;
             cbTaBortPodd.Location = new Point(155, 401);
-            cbTaBortPodd.Margin = new Padding(2, 2, 2, 2);
+            cbTaBortPodd.Margin = new Padding(2);
             cbTaBortPodd.Name = "cbTaBortPodd";
             cbTaBortPodd.Size = new Size(129, 23);
             cbTaBortPodd.TabIndex = 13;
@@ -171,7 +173,7 @@ namespace Podd
             // btnTaBort
             // 
             btnTaBort.Location = new Point(96, 425);
-            btnTaBort.Margin = new Padding(2, 2, 2, 2);
+            btnTaBort.Margin = new Padding(2);
             btnTaBort.Name = "btnTaBort";
             btnTaBort.Size = new Size(155, 20);
             btnTaBort.TabIndex = 14;
@@ -246,7 +248,7 @@ namespace Podd
             // btnAndraNamn
             // 
             btnAndraNamn.Location = new Point(86, 350);
-            btnAndraNamn.Margin = new Padding(2, 2, 2, 2);
+            btnAndraNamn.Margin = new Padding(2);
             btnAndraNamn.Name = "btnAndraNamn";
             btnAndraNamn.Size = new Size(155, 20);
             btnAndraNamn.TabIndex = 22;
@@ -280,9 +282,10 @@ namespace Podd
             // 
             // cbAndraNamn
             // 
+            cbAndraNamn.DropDownStyle = ComboBoxStyle.DropDownList;
             cbAndraNamn.FormattingEnabled = true;
             cbAndraNamn.Location = new Point(86, 298);
-            cbAndraNamn.Margin = new Padding(2, 2, 2, 2);
+            cbAndraNamn.Margin = new Padding(2);
             cbAndraNamn.Name = "cbAndraNamn";
             cbAndraNamn.Size = new Size(156, 23);
             cbAndraNamn.TabIndex = 24;
@@ -290,9 +293,10 @@ namespace Podd
             // 
             // cbAndraPoddKategori
             // 
+            cbAndraPoddKategori.DropDownStyle = ComboBoxStyle.DropDownList;
             cbAndraPoddKategori.FormattingEnabled = true;
             cbAndraPoddKategori.Location = new Point(105, 201);
-            cbAndraPoddKategori.Margin = new Padding(2, 2, 2, 2);
+            cbAndraPoddKategori.Margin = new Padding(2);
             cbAndraPoddKategori.Name = "cbAndraPoddKategori";
             cbAndraPoddKategori.Size = new Size(129, 23);
             cbAndraPoddKategori.TabIndex = 25;
@@ -323,7 +327,7 @@ namespace Podd
             Controls.Add(lblAvsnitt);
             Controls.Add(lblSparadePoddar);
             Controls.Add(lblMinaPoddar);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "MinaPoddar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form3";
