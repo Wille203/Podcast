@@ -59,7 +59,7 @@ namespace Podd
 
             
 
-            if (validering.CheckIfNameExist(podName)) 
+            if (!validering.CheckIfNameExist(podName)) 
             {
                 MessageBox.Show("Namnen du angett på podden finns redan!", "", MessageBoxButtons.OK);
                 return;

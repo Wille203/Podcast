@@ -31,8 +31,8 @@ namespace Podd
             kategoriController = new KategoriController();
             validering = new Validering();
 
-            Fyllcb(); // Fyller combo-boxen med kategorier
-            VisaPoddar(); // Visar alla poddar initialt
+            Fyllcb();
+            VisaPoddar();
             FyllCbPoddar();
         }
 
@@ -62,7 +62,7 @@ namespace Podd
 
         private void Fyllcb()
         {
-            cbValKategori.Items.Clear(); // Rensar tidigare innehåll om något finns
+            cbValKategori.Items.Clear();
             List<string> kategoriLista = kategoriController.LasAllaKategorier();
             foreach (string kategori in kategoriLista)
             {
@@ -74,18 +74,14 @@ namespace Podd
         private void cbValKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            // Hämta den valda kategorins namn från combo-boxen
             string valdKategori = cbValKategori.SelectedItem?.ToString();
 
             if (!string.IsNullOrEmpty(valdKategori))
             {
-                // Hämta poddar för den valda kategorin via KategoriController
                 var poddarForKategori = kategoriController.HamtaPoddarForKategori(valdKategori);
 
-                // Rensa tidigare visade poddar i tbMinaPoddar
                 tbMinaPoddar.Clear();
 
-                // Lägg till varje podds titel i tbMinaPoddar
                 foreach (var podd in poddarForKategori)
                 {
                     tbMinaPoddar.AppendText(podd.PodTitel + Environment.NewLine);
@@ -163,7 +159,6 @@ namespace Podd
             {
                 string valdPodTitel = tbMinaPoddar.Lines[index].Trim();
                 Pod podd = poddController.GetPodByTitle(valdPodTitel);
-                //tbAndraNamn.Text = valdPodTitel;
                 if (podd != null)
                 {
                     VisaAvsnittForPodd(podd);
@@ -225,7 +220,6 @@ namespace Podd
                     return;
                 }
             }
-                //Pod nyttPodNamn = poddController.GetPodByTitle(valdPodTitel);
                 poddController.UppdateraPoddNamn(valdPodTitel, nyttNamn);
             VisaPoddar();
         }

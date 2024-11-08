@@ -64,8 +64,6 @@ namespace DAL.Repository
             }
 
             return kategoriLista.FindIndex(e => e.KattNamn.Equals(name, StringComparison.OrdinalIgnoreCase));
-            //int index = GetAll().FindIndex(e => e.KattNamn.Equals(name, StringComparison.OrdinalIgnoreCase));
-            //return index;
         }
 
         public void SaveChanges()

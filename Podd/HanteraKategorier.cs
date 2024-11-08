@@ -104,7 +104,6 @@ namespace Podd
                 }
             }
 
-                //kategoriController.LasAllaKategorier();
                 Kategori kategori = kategoriController.hamtaKategoriByName(valdKategori);
             DialogResult dialogResult = MessageBox.Show("Är du säker?", "Byt namn på kategori", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)

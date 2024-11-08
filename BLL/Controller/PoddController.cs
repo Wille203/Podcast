@@ -104,10 +104,6 @@ namespace BLL.Controller
             
         }
 
-        //public string GetPodName(string name)
-        //{
-        //    return podRepository.GetByName(name).PodTitel;  
-        //}
 
         public string GetPodName()
         {

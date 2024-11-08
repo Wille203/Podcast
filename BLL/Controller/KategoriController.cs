@@ -13,19 +13,14 @@ namespace BLL.Controller
     {
         IRepository<Kategori> kategoriRepository;
         KategoriRepository kategoriRepository1;
-        //Kategori nyKategori;
+
         public KategoriController()
         {
             kategoriRepository = new KategoriRepository();
             kategoriRepository1 = new KategoriRepository();
-            //nyKategori = new Kategori();
         }
 
-        //public List<Kategori> LasAllaKategorier()
-        //{
-        //    List<Kategori> kategoriLista = kategoriRepository.GetAll();
-        //    return kategoriLista;
-        //}
+
 
         public void SkapaFardigKategori()
         {
@@ -77,8 +72,8 @@ namespace BLL.Controller
 
         public List<Pod> HamtaPoddarForKategori(string kategoriNamn)
         {
-            var kategori = hamtaKategoriByName(kategoriNamn); // Hämta kategori baserat på namn
-            return kategori?.Pod ?? new List<Pod>(); // Returnera poddar om kategorin finns, annars en tom lista
+            var kategori = hamtaKategoriByName(kategoriNamn);
+            return kategori?.Pod ?? new List<Pod>();
         }
 
         public void TaBortPoddFranKategori(string kategoriNamn,string poddTitel)
