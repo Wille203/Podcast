@@ -1,4 +1,5 @@
-﻿using BLL.Controller;
+﻿using BLL;
+using BLL.Controller;
 using DAL.Repository;
 using Models;
 using System;
@@ -17,11 +18,13 @@ namespace Podd
     {
         KategoriController kategoriController;
         KategoriRepository kategoriRepository;
+        Validering validering;
         public HanteraKategorier()
         {
             InitializeComponent();
             kategoriController = new KategoriController();
             kategoriRepository = new KategoriRepository();
+            validering = new Validering();
 
             Fyllcb();
 
@@ -66,16 +69,43 @@ namespace Podd
                 cbBytNamnKategori.Items.Add(kategori);
                 cbKategori.Items.Add(kategori);
             }
-            cbBytNamnKategori.SelectedIndex = 0;
-            cbKategori.SelectedIndex = 0;
+            cbBytNamnKategori.SelectedIndex = -1;
+            cbKategori.SelectedIndex = -1;
         }
 
         private void btnSparaNamn_Click(object sender, EventArgs e)
         {
-            string valdKategori = cbBytNamnKategori.SelectedItem.ToString();
-            string nyttKategoriNamn = tbBytNamn.Text;
-            //kategoriController.LasAllaKategorier();
-            Kategori kategori = kategoriController.hamtaKategoriByName(valdKategori);
+            string valdKategori = "";
+            string nyttKategoriNamn = "";
+
+            if (cbBytNamnKategori.SelectedItem != null)
+            {
+                valdKategori = cbBytNamnKategori.SelectedItem.ToString();
+            }
+            else 
+            {
+                if (validering.CheckIfStringIsEmpty(valdKategori)) 
+                {
+                    MessageBox.Show("Vänligen välj en kategori", "", MessageBoxButtons.OK);
+                    return;
+                }
+                
+            }
+            if (tbBytNamn.Text != "")
+            {
+                nyttKategoriNamn = tbBytNamn.Text;
+            }
+            else
+            {
+                if (validering.CheckIfStringIsEmpty(nyttKategoriNamn))
+                {
+                    MessageBox.Show("Vänligen fyll i ett nytt kategori-namn", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+                //kategoriController.LasAllaKategorier();
+                Kategori kategori = kategoriController.hamtaKategoriByName(valdKategori);
             DialogResult dialogResult = MessageBox.Show("Är du säker?", "Byt namn på kategori", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -105,10 +135,25 @@ namespace Podd
 
         private void btnTaBort_Click(object sender, EventArgs e)
         {
+            string valdKategori = "";
+
+            if (cbKategori.SelectedItem != null)
+            {
+                valdKategori = cbKategori.SelectedItem.ToString();
+            }
+            else 
+            {
+                if (validering.CheckIfStringIsEmpty(valdKategori)) 
+                {
+                    MessageBox.Show("Vänligen välj en kategori att ta bort!", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
             DialogResult dialogResult = MessageBox.Show("Är du säker?", "Ta bort kategori", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                string valdKategori = cbKategori.SelectedItem.ToString();
+                
                 int i = kategoriRepository.GetIndex(valdKategori);
                 kategoriRepository.Delete(i);
                 kategoriRepository.TaBortKate(valdKategori);
@@ -127,6 +172,12 @@ namespace Podd
         private void btnSparaKategori_Click(object sender, EventArgs e)
         {
             string kategoriNamn = tbLaggTillKategori.Text;
+            if (validering.CheckIfCategoryExist(kategoriNamn)) 
+            {
+                MessageBox.Show("Namnet på kategorin finns redan, vänligen välj ett annat namn!", "", MessageBoxButtons.OK);
+                return;
+            }
+
             if (!string.IsNullOrEmpty(kategoriNamn))
             {
                 kategoriController.LaggTillKategori(kategoriNamn, new List<Pod>());

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
 
 namespace Podd
 {
@@ -15,20 +16,55 @@ namespace Podd
     {
         PoddController poddController;
         KategoriController kategoriController;
+        Validering validering;
         public LaggTillPodd2()
         {
             InitializeComponent();
             tbPoddNamn.ReadOnly = true;
             kategoriController = new KategoriController();
-            
+            validering = new Validering();
             poddController = new PoddController();
             Fyllcb();
         }
 
-        private void btnSparaPodd_Click(object sender, EventArgs e)
+        private async void btnSparaPodd_Click(object sender, EventArgs e)
         {
-            string podName = string.IsNullOrEmpty(tbNamn.Text) ? tbPoddNamn.Text : tbNamn.Text;
-            string kategori = cbValKategori.SelectedItem?.ToString() ?? "";
+            string podName = "";
+            string kategori = "";
+            if (tbPoddNamn.Text != "")
+            {
+                podName = string.IsNullOrEmpty(tbNamn.Text) ? tbPoddNamn.Text : tbNamn.Text;
+            }
+            else 
+            {
+                if (validering.CheckIfStringIsEmpty(podName)) 
+                {
+                    MessageBox.Show("Vänligen fyll i poddnamn", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            if (cbValKategori.SelectedItem != null)
+            {
+                kategori = cbValKategori.SelectedItem?.ToString() ?? "";
+            }
+            else
+            {
+                if (validering.CheckIfStringIsEmpty(kategori))
+                {
+                    MessageBox.Show("Vänligen välj en kategori!", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+
+            
+
+            if (validering.CheckIfNameExist(podName)) 
+            {
+                MessageBox.Show("Namnen du angett på podden finns redan!", "", MessageBoxButtons.OK);
+                return;
+            }
+            await Task.Delay(100);
 
             poddController.SavePod(tbLank.Text, podName, kategori);
 
@@ -54,9 +90,22 @@ namespace Podd
 
         }
 
-        private void btnHamtaPodd1_Click(object sender, EventArgs e)
+        private async void btnHamtaPodd1_Click(object sender, EventArgs e)
         {
-            poddController.HamtaPoddFranRss(tbLank.Text);
+            string hamtaUrl = tbLank.Text;
+            if (validering.CheckIfUrlExist(hamtaUrl)) 
+            {
+                MessageBox.Show("Denna url finns redan sparad!", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (!validering.TryParseFeed(hamtaUrl))
+            {
+                MessageBox.Show("Ogiltigt URL format", "", MessageBoxButtons.OK);
+                return;
+            }
+            await Task.Delay(100);
+
+            poddController.HamtaPoddFranRss(hamtaUrl);
             tbPoddNamn.Text = poddController.GetPodName();
             tbNamn.Text = poddController.GetPodName();
         }

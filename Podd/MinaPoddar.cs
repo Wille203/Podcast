@@ -1,4 +1,5 @@
-﻿using BLL.Controller;
+﻿using BLL;
+using BLL.Controller;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Podd
     {
         private PoddController poddController;
         KategoriController kategoriController;
+        Validering validering;
         public MinaPoddar()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace Podd
             tbMinaPoddar.ReadOnly = true;
             poddController = new PoddController();
             kategoriController = new KategoriController();
+            validering = new Validering();
 
             Fyllcb(); // Fyller combo-boxen med kategorier
             VisaPoddar(); // Visar alla poddar initialt
@@ -160,7 +163,7 @@ namespace Podd
             {
                 string valdPodTitel = tbMinaPoddar.Lines[index].Trim();
                 Pod podd = poddController.GetPodByTitle(valdPodTitel);
-                tbAndraNamn.Text = valdPodTitel;
+                //tbAndraNamn.Text = valdPodTitel;
                 if (podd != null)
                 {
                     VisaAvsnittForPodd(podd);
@@ -209,10 +212,21 @@ namespace Podd
         private void btnAndraNamn_Click_1(object sender, EventArgs e)
         {
             string nyttNamn = tbAndraNamn.Text;
-            string valdPodTitel = cbAndraNamn.SelectedItem.ToString();
-
-            //Pod nyttPodNamn = poddController.GetPodByTitle(valdPodTitel);
-            poddController.UppdateraPoddNamn(valdPodTitel, nyttNamn);
+            string valdPodTitel = "";
+            if (cbAndraNamn.SelectedItem != null) 
+            { 
+                valdPodTitel = cbAndraNamn.SelectedItem.ToString();
+            }
+            else 
+            {
+                if (validering.CheckIfStringIsEmpty(valdPodTitel)) 
+                {
+                    MessageBox.Show("Vänligen välj en podd att ändra namn på!", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+                //Pod nyttPodNamn = poddController.GetPodByTitle(valdPodTitel);
+                poddController.UppdateraPoddNamn(valdPodTitel, nyttNamn);
             VisaPoddar();
         }
 
@@ -224,14 +238,30 @@ namespace Podd
 
         private void btnSparaKategori_Click(object sender, EventArgs e)
         {
-            string valdPoddTitel = cbAndraPoddKategori.SelectedItem.ToString();
-            string nyKategoriNamn = cbAndraKategori.SelectedItem.ToString();
+            string valdPoddTitel = "";
+            string nyKategoriNamn = "";
 
-            if(string.IsNullOrEmpty(valdPoddTitel) || string.IsNullOrEmpty(nyKategoriNamn))
+            if (cbAndraKategori.SelectedItem != null && cbAndraPoddKategori.SelectedItem != null)
             {
-                MessageBox.Show("Vänligen välj både en podd och en ny kategori.");
-                return;
+                 valdPoddTitel = cbAndraPoddKategori.SelectedItem.ToString();
+                 nyKategoriNamn = cbAndraKategori.SelectedItem.ToString();
             }
+            else
+            {
+                if (validering.CheckIfStringIsEmpty(valdPoddTitel))
+                {
+                    MessageBox.Show("Vänligen välj en podd!", "", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (validering.CheckIfStringIsEmpty(nyKategoriNamn))
+                {
+                    MessageBox.Show("Vänligen välj en kategori!", "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+
+           
 
             try
             {
